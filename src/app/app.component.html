@@ -1,20 +1,60 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="tl_page_wrap">
+  <div class="tl_page">
+    <main class="tl_article tl_article_editable tl_article_edit title_focused">
+      <header class="tl_article_header">
+        <h1 dir="auto"></h1>
+        <address dir="auto">
+          <a rel="author"></a>
 
+          <time datetime=""></time>
+        </address>
+      </header>
+      <article id="_tl_editor" class="tl_article_content ql-container">
+        <div class="ql-editor" contenteditable="true" dir="auto">
+          <h1 data-placeholder="Title" data-label="Title">афыв</h1>
+          <address data-placeholder="Your name" data-label="Author" class="empty"><br></address>
+          <p><i style="font-weight: bold;">пф</i><span style="font-weight: bold;"><i>ыв</i>а</span><i>ф</i>п<i style="font-weight: bold;">фё</i></p>
+          <p>афыв</p></div>
+
+        <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
+        <div id="_tl_link_tooltip" class="tl_link_tooltip"></div>
+        <div id="_tl_tooltip" class="tl_tooltip" [class.shown]="show">
+          <div class="buttons">
+            <span class="button_hover"></span>
+            <span class="button_group">
+              <button id="_bold_button" [class.active]="activeBold" (click)="bold()"></button>
+              <button id="_italic_button" [class.active]="activeItalic" (click)="italic()"></button>
+              <button id="_link_button" [class.active]="active" (click)="active ? unlink() : addLink()"></button>
+            </span>
+            <span class="button_group">
+              <button id="_header_button" [class.active]="!!objActive.header" (click)="formatBlockH3()"></button>
+              <button id="_subheader_button" [class.active]="!!objActive.subheader" (click)="formatBlockH4()"></button>
+              <button id="_quote_button" [class.active]="!!objActive.quote" (click)="formatBlockquote()"></button>
+            </span>
+          </div>
+          <div class="prompt">
+            <span class="close"></span>
+            <div class="prompt_input_wrap"><input type="url" class="prompt_input"></div>
+          </div>
+        </div>
+        <div id="_tl_blocks" class="tl_blocks shown">
+          <div class="buttons">
+            <button id="_image_button" (click)="upload()"></button>
+
+            <button id="_embed_button"></button>
+          </div>
+        </div>
+      </article>
+
+
+      <aside class="tl_article_buttons">
+        <div class="account account_top"></div>
+        <button id="_edit_button" class="button edit_button">Edit</button>
+
+        <button id="_publish_button" class="button publish_button">Publish</button>
+        <div class="account account_bottom"></div>
+        <div id="_error_msg" class="error_msg"></div>
+      </aside>
+    </main>
+  </div>
+</div>

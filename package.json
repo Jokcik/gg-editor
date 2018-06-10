@@ -1,6 +1,7 @@
 {
   "name": "gg-editor",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "The best package in the world",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
