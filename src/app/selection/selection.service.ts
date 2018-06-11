@@ -2,7 +2,7 @@ import {Injectable, Renderer2, RendererFactory2} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {Elements} from '../constants';
 import {SelectionEditor} from './selection';
-import {Blockquote, H1, H2, H3} from './blocks';
+import {Blockquote, Cite, Dd, Del, Dt, H1, H2, H3, Ins, OrderedList, UnorderedList} from './blocks';
 import {SelectionLogicService} from './selection-logic.service';
 
 @Injectable({providedIn: 'root'})
@@ -48,7 +48,11 @@ export class SelectionService {
       blockquote: this.isBlockquote(),
       cite: this.isCite(),
       del: this.isDel(),
-      ins: this.isIns()
+      ins: this.isIns(),
+      dd: this.isDd(),
+      dt: this.isDt(),
+      orderedList: this.isOrederedList(),
+      unorderedList: this.isUnorederedList()
     };
 
     this.subjectSelected.next(result);
@@ -90,17 +94,37 @@ export class SelectionService {
     return {active};
   }
 
-  private isCite(): Blockquote {
+  private isCite(): Cite {
     const active = this.activeAll('cite');
     return {active};
   }
 
-  private isDel(): Blockquote {
+  private isDel(): Del {
     const active = this.activeAll('del');
     return {active};
   }
 
-  private isIns(): Blockquote {
+  private isDd(): Dd {
+    const active = this.activeAll('dd');
+    return {active};
+  }
+
+  private isDt(): Dt {
+    const active = this.activeAll('dt');
+    return {active};
+  }
+
+  private isOrederedList(): OrderedList {
+    const active = this.activeAll('ol');
+    return {active};
+  }
+
+  private isUnorederedList(): UnorderedList {
+    const active = this.activeAll('ul');
+    return {active};
+  }
+
+  private isIns(): Ins {
     const active = this.activeAll('ins');
     return {active};
   }

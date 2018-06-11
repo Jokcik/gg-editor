@@ -50,6 +50,26 @@ export class AppComponent implements OnInit {
     this.commandService.del(this.editor.del.active);
   }
 
+  formatDt() {
+    this.commandService.dt(this.editor.dt.active);
+  }
+
+  formatDd() {
+    this.commandService.dd(this.editor.dd.active);
+  }
+
+  appendHr() {
+    this.commandService.hr();
+  }
+
+  formatOrderedList() {
+    this.commandService.insertOrderedList();
+  }
+
+  formatUnorderedList() {
+    this.commandService.insertUnorderedList();
+  }
+
   formatIns() {
     this.commandService.ins(this.editor.ins.active);
   }

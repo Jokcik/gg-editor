@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {SelectionService} from '../selection';
-import {P} from '@angular/core/src/render3';
 
 @Injectable({providedIn: 'root'})
 export class CommandService {
@@ -42,6 +41,30 @@ export class CommandService {
       this.selectionService.deleteTagSelected('ins');
     }
 
+    this.selectionService.updateActive();
+  }
+
+  public dd(active: boolean) {
+    this.exec('formatBlock', false, active ? 'p' : 'dd');
+    this.selectionService.updateActive();
+  }
+
+  public dt(active: boolean) {
+    this.exec('formatBlock', false, active ? 'p' : 'dt');
+    this.selectionService.updateActive();
+  }
+
+  public hr() {
+    this.exec('insertHorizontalRule');
+  }
+
+  public insertOrderedList() {
+    this.exec('insertOrderedList');
+    this.selectionService.updateActive();
+  }
+
+  public insertUnorderedList() {
+    this.exec('insertUnorderedList');
     this.selectionService.updateActive();
   }
 

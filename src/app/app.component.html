@@ -16,7 +16,6 @@
           <p><i style="font-weight: bold;">пф</i><span style="font-weight: bold;"><i>ыв</i>а</span><i>ф</i>п<i style="font-weight: bold;">фё</i></p>
           <p>афыв</p></div>
 
-        <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
         <div id="_tl_link_tooltip" class="tl_link_tooltip"></div>
         <div id="_tl_tooltip" class="tl_tooltip" [class.shown]="editor.active">
           <div class="buttons">
@@ -34,6 +33,11 @@
               <button [class.active]="editor.cite.active" (click)="formatCite()">CIT</button>
               <button [class.active]="editor.del.active" (click)="formatDel()">DEL</button>
               <button [class.active]="editor.ins.active" (click)="formatIns()">INS</button>
+              <button [class.active]="editor.dd.active" (click)="formatDd()">DD</button>
+              <button [class.active]="editor.dt.active" (click)="formatDt()">DT</button>
+              <button [class.active]="editor.orderedList.active" (click)="formatOrderedList()">ol</button>
+              <button [class.active]="editor.unorderedList.active" (click)="formatUnorderedList()">ul</button>
+              <button (click)="appendHr()">HR</button>
             </span>
           </div>
           <div class="prompt">
@@ -41,24 +45,8 @@
             <div class="prompt_input_wrap"><input type="url" class="prompt_input"></div>
           </div>
         </div>
-        <div id="_tl_blocks" class="tl_blocks shown">
-          <div class="buttons">
-            <button id="_image_button" (click)="upload()"></button>
-
-            <button id="_embed_button"></button>
-          </div>
-        </div>
       </article>
 
-
-      <aside class="tl_article_buttons">
-        <div class="account account_top"></div>
-        <button id="_edit_button" class="button edit_button">Edit</button>
-
-        <button id="_publish_button" class="button publish_button">Publish</button>
-        <div class="account account_bottom"></div>
-        <div id="_error_msg" class="error_msg"></div>
-      </aside>
     </main>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import {Blockquote, Cite, Del, H1, H2, H3, Ins} from './blocks';
+import {Blockquote, Cite, Dd, Del, Dt, H1, H2, H3, Ins, OrderedList, UnorderedList} from './blocks';
 
 export class SelectionEditor {
   active: boolean = false;
@@ -13,4 +13,8 @@ export class SelectionEditor {
   cite: Cite = new Cite();
   del: Del = new Del();
   ins: Ins = new Ins();
+  dd: Dd = new Dd();
+  dt: Dt = new Dt();
+  orderedList: OrderedList = new OrderedList();
+  unorderedList: UnorderedList = new UnorderedList();
 }

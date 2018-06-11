@@ -23,6 +23,22 @@ export class Ins {
   active: boolean;
 }
 
+export class Dd {
+  active: boolean;
+}
+
+export class Dt {
+  active: boolean;
+}
+
+export class OrderedList {
+  active: boolean;
+}
+
+export class UnorderedList {
+  active: boolean;
+}
+
 export class Blockquote {
   active: boolean;
 }
