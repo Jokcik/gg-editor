@@ -5,7 +5,8 @@ import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
 import {SelectionService} from './selection';
 import {CommonModule} from '@angular/common';
-import {CommandService} from './command/command.service';
+import {CommandService} from './command';
+import {SelectionLogicService} from './selection/selection-logic.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import {CommandService} from './command/command.service';
     CommonModule,
     FormsModule,
   ],
-  providers: [SelectionService, CommandService],
+  providers: [SelectionService, CommandService, SelectionLogicService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,10 +2,8 @@ import {Injectable, Renderer2, RendererFactory2} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {Elements} from '../constants';
 import {SelectionEditor} from './selection';
-import {H1} from './h1';
-import {H2} from './h2';
-import {H3} from './h3';
-import {Blockquote} from './blockquote';
+import {Blockquote, H1, H2, H3} from './blocks';
+import {SelectionLogicService} from './selection-logic.service';
 
 @Injectable({providedIn: 'root'})
 export class SelectionService {
@@ -13,13 +11,13 @@ export class SelectionService {
   public selected$: Observable<SelectionEditor> = this.subjectSelected.asObservable();
 
   private _renderer: Renderer2;
-  constructor(rendererFactory: RendererFactory2) {
-    this.onInit(rendererFactory);
-    document.execCommand('defaultParagraphSeparator', false, 'p');
+  constructor(private rendererFactory: RendererFactory2,
+              private selectionLogigService: SelectionLogicService) {
+    this.onInit();
   }
 
-  private onInit(rendererFactory: RendererFactory2) {
-    this._renderer = rendererFactory.createRenderer(null, null);
+  private onInit() {
+    this._renderer = this.rendererFactory.createRenderer(null, null);
     this._renderer.listen('document', 'mouseup', event => this.onSelect(event));
     this._renderer.listen('document', 'keyup', event => this.onSelect(event));
   }
@@ -47,7 +45,10 @@ export class SelectionService {
       h1: this.isH1(),
       h2: this.isH2(),
       h3: this.isH3(),
-      blockquote: this.isBlockquote()
+      blockquote: this.isBlockquote(),
+      cite: this.isCite(),
+      del: this.isDel(),
+      ins: this.isIns()
     };
 
     this.subjectSelected.next(result);
@@ -69,23 +70,38 @@ export class SelectionService {
   }
 
   private isH1(): H1 {
-    const active = this.activeAll('h1', true);
+    const active = this.activeAll('h1');
     const check = !!this.rootElem.querySelector('h1');
     return {active, check};
   }
 
   private isH2(): H2 {
-    const active = this.activeAll('h2', true);
+    const active = this.activeAll('h2');
     return {active};
   }
 
   private isH3(): H3 {
-    const active = this.activeAll('h3', true);
+    const active = this.activeAll('h3');
     return {active};
   }
 
   private isBlockquote(): Blockquote {
-    const active = this.activeAll('blockquote', true);
+    const active = this.activeAll('blockquote',);
+    return {active};
+  }
+
+  private isCite(): Blockquote {
+    const active = this.activeAll('cite');
+    return {active};
+  }
+
+  private isDel(): Blockquote {
+    const active = this.activeAll('del');
+    return {active};
+  }
+
+  private isIns(): Blockquote {
+    const active = this.activeAll('ins');
     return {active};
   }
 
@@ -106,30 +122,20 @@ export class SelectionService {
     return ancestor.firstChild ? ancestor.firstChild.parentElement : ancestor.parentElement;
   }
 
-  private activeAll(tagName: string, withoutInner: boolean = false): boolean {
-    const range = this.getRange();
-
-    const parent: Element = this.getRangeContent();
-    if (parent && this.checkClosest(parent, tagName)) { return true; } // если родитель и его предки содерждать tagName --> true
-
-    const contens = range.cloneContents();
-    if (!withoutInner) { // если поиск везде, то просто ищем этот тег у любого потомка
-      return !!contens.querySelector(tagName);
-    }
-
-    for (let i = 0; i < contens.childNodes.length; ++i) { // если хотябы 1 из потомков не является tagName --> false
-      const node = contens.childNodes.item(i);
-      if (node.nodeName.toLowerCase() !== tagName) {
-        return false;
-      }
-    }
-
-    return true;
+  public activeAll(tagName: string, withoutInner: boolean = false): boolean {
+    return this.selectionLogigService.activeAll(this.getRange(), this.getRangeContent(), tagName, withoutInner);
   }
 
-  private checkClosest(elem: Element, tagName) {
-    // TODO: по идеи должно работать и без elem.tagName === ...
-    return !!elem.closest(tagName) || elem.tagName === tagName.toUpperCase();
+  public deleteTagSelected(tagName: string) {
+    this.selectionLogigService.deleteTagSelected(this.getRange(), tagName);
+  }
+
+  public replaceSelected(currentTag: string, replaceTag: string) {
+    this.selectionLogigService.replaceSelected(this.getRange(), currentTag, replaceTag);
+  }
+
+  public wrapSelected(currentTag: string, replaceTag: string) {
+   this.selectionLogigService.wrapSelected(this.getRange(), currentTag, replaceTag);
   }
 
 }

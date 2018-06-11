@@ -46,6 +46,19 @@ export class AppComponent implements OnInit {
     this.commandService.h3(this.editor.h3.active);
   }
 
+  formatDel() {
+    this.commandService.del(this.editor.del.active);
+  }
+
+  formatIns() {
+    this.commandService.ins(this.editor.ins.active);
+  }
+
+  formatCite() {
+    const url = 'example.com';
+    this.commandService.cite(this.editor.cite.active, url);
+  }
+
   formatBlockquote() {
     this.commandService.blockquote(this.editor.blockquote.active)
   }

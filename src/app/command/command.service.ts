@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {SelectionService} from '../selection';
+import {P} from '@angular/core/src/render3';
 
 @Injectable({providedIn: 'root'})
 export class CommandService {
 
   constructor(private selectionService: SelectionService) {
     this.selectionService.renderer.listen('document', 'keydown.enter',
-        event => !!setTimeout(() => this.newLine(event), 0));
+        event => !!setTimeout(() => this.newLine(event)));
   }
 
   public h1(active: boolean) {
@@ -24,8 +25,40 @@ export class CommandService {
     this.selectionService.updateActive();
   }
 
+  public del(active: boolean) {
+    if (!active) {
+      this.selectionService.wrapSelected(null, 'del');
+    } else {
+      this.selectionService.deleteTagSelected('del');
+    }
+
+    this.selectionService.updateActive();
+  }
+
+  public ins(active: boolean) {
+    if (!active) {
+      this.selectionService.wrapSelected(null, 'ins');
+    } else {
+      this.selectionService.deleteTagSelected('ins');
+    }
+
+    this.selectionService.updateActive();
+  }
+
   public blockquote(active: boolean) {
     this.exec('formatBlock', false, active ? 'p' : 'blockquote');
+    this.selectionService.updateActive();
+  }
+
+  public cite(active: boolean, url: string) {
+    if (!active) {
+      this.selectionService.wrapSelected(null, 'a');
+      this.selectionService.wrapSelected(null, 'cite');
+    } else {
+      this.selectionService.deleteTagSelected('a');
+      this.selectionService.deleteTagSelected('cite');
+    }
+
     this.selectionService.updateActive();
   }
 
@@ -58,7 +91,7 @@ export class CommandService {
     const selection = document.getSelection();
     const tagName = 'p';
 
-    const elem = document.createElement(tagName);
+    const elem = this.selectionService.renderer.createElement(tagName);
     elem.innerHTML = '<br/>';
 
     const replaceElem = selection.anchorNode.parentElement;

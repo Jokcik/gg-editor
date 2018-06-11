@@ -1,6 +1,3 @@
 export * from './selection.service'
 export * from './selection'
-export * from './blockquote'
-export * from './h1'
-export * from './h2'
-export * from './h3'
+export * from './blocks'

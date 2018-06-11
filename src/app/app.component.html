@@ -31,6 +31,9 @@
               <button id="_header_button" [class.active]="editor.h2.active" (click)="formatH2()"></button>
               <button id="_subheader_button" [class.active]="editor.h3.active" (click)="formatH3()"></button>
               <button id="_quote_button" [class.active]="editor.blockquote.active" (click)="formatBlockquote()"></button>
+              <button [class.active]="editor.cite.active" (click)="formatCite()">CIT</button>
+              <button [class.active]="editor.del.active" (click)="formatDel()">DEL</button>
+              <button [class.active]="editor.ins.active" (click)="formatIns()">INS</button>
             </span>
           </div>
           <div class="prompt">
