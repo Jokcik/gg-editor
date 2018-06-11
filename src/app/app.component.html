@@ -18,18 +18,19 @@
 
         <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
         <div id="_tl_link_tooltip" class="tl_link_tooltip"></div>
-        <div id="_tl_tooltip" class="tl_tooltip" [class.shown]="show">
+        <div id="_tl_tooltip" class="tl_tooltip" [class.shown]="editor.active">
           <div class="buttons">
             <span class="button_hover"></span>
             <span class="button_group">
-              <button id="_bold_button" [class.active]="activeBold" (click)="bold()"></button>
-              <button id="_italic_button" [class.active]="activeItalic" (click)="italic()"></button>
-              <button id="_link_button" [class.active]="active" (click)="active ? unlink() : addLink()"></button>
+              <button id="_bold_button" [class.active]="editor.activeBold" (click)="bold()"></button>
+              <button id="_italic_button" [class.active]="editor.activeItalic" (click)="italic()"></button>
+              <button id="_link_button" [class.active]="editor.activeLink" (click)="editor.activeLink ? unlink() : addLink()"></button>
             </span>
             <span class="button_group">
-              <button id="_header_button" [class.active]="!!objActive.header" (click)="formatBlockH3()"></button>
-              <button id="_subheader_button" [class.active]="!!objActive.subheader" (click)="formatBlockH4()"></button>
-              <button id="_quote_button" [class.active]="!!objActive.quote" (click)="formatBlockquote()"></button>
+              <button [class.active]="editor.h1.active" [class.disabled]="!editor.h1.active && editor.h1.check" (click)="formatH1()">H1</button>
+              <button id="_header_button" [class.active]="editor.h2.active" (click)="formatH2()"></button>
+              <button id="_subheader_button" [class.active]="editor.h3.active" (click)="formatH3()"></button>
+              <button id="_quote_button" [class.active]="editor.blockquote.active" (click)="formatBlockquote()"></button>
             </span>
           </div>
           <div class="prompt">

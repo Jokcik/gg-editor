@@ -1,35 +1,20 @@
-import {Component, OnInit, Renderer2} from '@angular/core';
-import {SelectionService} from './selection';
-import {CommandService} from './command/command.service';
+import {Component, OnInit} from '@angular/core';
+import {SelectionEditor, SelectionService} from './selection';
+import {CommandService} from './command';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  public show: boolean = false;
-  public text: string;
-  public active: boolean;
-  public activeBold: boolean;
-  public activeItalic: boolean;
-
-  public objActive: {[key: string]: boolean} = {
-    header: false,
-    subheader: false,
-    quote: false
-  };
+  public editor: SelectionEditor = new SelectionEditor();
 
   constructor(private selectionService: SelectionService,
               private commandService: CommandService) {
   }
 
   ngOnInit() {
-    this.selectionService.selected$.subscribe(result => {
-      this.show = result.active;
-      this.active = result.activeLink;
-      this.activeBold = result.activeBold;
-      this.activeItalic = result.activeItalic;
-    })
+    this.selectionService.selected$.subscribe(result => this.editor = result)
   }
 
   bold() {
@@ -49,47 +34,20 @@ export class AppComponent implements OnInit {
     this.commandService.unLink();
   }
 
-  private formatBlock(block: string) {
-    document.execCommand('formatBlock', true, block);
-    this.selectionService.checkActive();
+  formatH1() {
+    this.commandService.h1(this.editor.h1.active);
   }
 
-  formatBlockH3() {
-    if (this.objActive.header) {
-      this.formatBlock('p');
-    } else {
-      this.formatBlock('h3');
-    }
-    this.toogle('header');
+  formatH2() {
+    this.commandService.h2(this.editor.h2.active);
   }
 
-
-  formatBlockH4() {
-    if (this.objActive.subheader) {
-      this.formatBlock('p');
-    } else {
-      this.formatBlock('h4');
-    }
-    this.toogle('subheader');
+  formatH3() {
+    this.commandService.h3(this.editor.h3.active);
   }
-
 
   formatBlockquote() {
-    if (this.objActive.quote) {
-      this.formatBlock('p');
-    } else {
-      this.formatBlock('BLOCKQUOTE');
-    }
-
-    this.toogle('quote');
-  }
-
-  toogle(block: string) {
-    const res = this.objActive[block];
-    console.log(this.objActive);
-    Object.keys(this.objActive).forEach(key => this.objActive[key] = false);
-    console.log(this.objActive);
-    this.objActive[block] = !res;
+    this.commandService.blockquote(this.editor.blockquote.active)
   }
 
   upload() {

@@ -5,26 +5,65 @@ import {SelectionService} from '../selection';
 export class CommandService {
 
   constructor(private selectionService: SelectionService) {
+    this.selectionService.renderer.listen('document', 'keydown.enter',
+        event => !!setTimeout(() => this.newLine(event), 0));
+  }
+
+  public h1(active: boolean) {
+    this.exec('formatBlock', false, active ? 'p' : 'h1');
+    this.selectionService.updateActive();
+  }
+
+  public h2(active: boolean) {
+    this.exec('formatBlock', false, active ? 'p' : 'h2');
+    this.selectionService.updateActive();
+  }
+
+  public h3(active: boolean) {
+    this.exec('formatBlock', false, active ? 'p' : 'h3');
+    this.selectionService.updateActive();
+  }
+
+  public blockquote(active: boolean) {
+    this.exec('formatBlock', false, active ? 'p' : 'blockquote');
+    this.selectionService.updateActive();
   }
 
   public bold() {
-    document.execCommand('bold');
-    this.selectionService.checkActive();
+    this.exec('bold');
+    this.selectionService.updateActive();
   }
 
   public italic() {
-    document.execCommand('italic', false, null);
-    this.selectionService.checkActive();
+    this.exec('italic');
+    this.selectionService.updateActive();
   }
 
   public unLink() {
-    document.execCommand('unlink', false, false);
-    this.selectionService.checkActive();
+    this.exec('unlink');
+    this.selectionService.updateActive();
   }
 
   public createLink(url: string) {
-    document.execCommand('createLink', true, url);
+    this.exec('createLink', true, url);
     (this.selectionService.getRangeContent() as HTMLLinkElement).target = '_blank';
-    this.selectionService.checkActive();
+    this.selectionService.updateActive();
+  }
+
+  private exec(commandId: string, showUI: boolean = false, value: any = null) {
+    document.execCommand(commandId, showUI, value);
+  }
+
+  private newLine(event: Event) {
+    const selection = document.getSelection();
+    const tagName = 'p';
+
+    const elem = document.createElement(tagName);
+    elem.innerHTML = '<br/>';
+
+    const replaceElem = selection.anchorNode.parentElement;
+    if (replaceElem.nodeName.toLowerCase() === tagName) {
+      replaceElem.parentElement.replaceChild(elem, replaceElem);
+    }
   }
 }
