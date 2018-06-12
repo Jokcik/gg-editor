@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
   }
 
   formatBlockquote() {
-    this.commandService.blockquote(this.editor.blockquote.active)
+    this.commandService.blockquote(this.editor.blockquote.active);
   }
 
   upload() {
@@ -92,7 +92,7 @@ export class AppComponent implements OnInit {
       const url = URL.createObjectURL(fileList.item(0));
       const img = document.createElement('img');
       img.setAttribute('src', url);
-      document.body.querySelector('.ql-editor').appendChild(img)
+      document.body.querySelector('.ql-editor').appendChild(img);
       // document.execCommand('insertImage', true, url);
     }
   }
