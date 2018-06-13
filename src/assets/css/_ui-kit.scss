@@ -1,0 +1,59 @@
+
+// этот код потом заменит код спойлера в ui-kit'e на сайте
+
+.spoiler-block {
+  position: relative;
+  margin: 0 0 24px;
+  box-sizing: border-box;
+  >*{
+    box-sizing: border-box;
+  }
+  .spoiler-head {
+    position: relative;
+    padding: 7px 98px 6px 14px;
+    font-size: 14px;
+    line-height: normal;
+    min-height: 32px;
+    color: $white;
+    background-color: rgba(79, 89, 119, 0.3);
+    cursor: pointer;
+    border-radius: 2px;
+    user-select: none;
+    &:after {
+      content: attr(data-show);
+      position: absolute;
+      top: 7px;
+      right: 16px;
+      color: $linkBlue;
+    }
+    &:hover {
+      background-color: $spoilerHover;
+      &:after {
+        color: $linkBlueHover;
+      }
+    }
+  }
+  .spoiler-content {
+    border: 2px solid transparent;
+    border-top: none;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.35s ease-in-out;
+    .inner-block {
+      padding: 30px;
+    }
+  }
+  &.active {
+    .spoiler-head {
+      border-radius: 2px 2px 0 0;
+      &:after {
+        content: attr(data-hide);
+      }
+    }
+    .spoiler-content {
+      padding: 18px 24px;
+      height: auto;
+      border-color: rgba(79, 89, 119, 0.3);
+    }
+  }
+}
