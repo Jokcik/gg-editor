@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SelectionEditor, SelectionService} from './selection';
 import {CommandService} from './command';
+import {LinkBlot} from './parchment/link';
+import Parchment from 'parchment';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +16,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(LinkBlot);
+    console.log(Parchment.create('link').parent);
     this.selectionService.selected$.subscribe(result => this.editor = result)
   }
 

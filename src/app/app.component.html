@@ -10,11 +10,14 @@
         </address>
       </header>
       <article id="_tl_editor" class="tl_article_content ql-container">
-        <div class="ql-editor" contenteditable="true" dir="auto">
-          <h1 data-placeholder="Title" data-label="Title">афыв</h1>
-          <address data-placeholder="Your name" data-label="Author" class="empty"><br></address>
-          <p><i style="font-weight: bold;">пф</i><span style="font-weight: bold;"><i>ыв</i>а</span><i>ф</i>п<i style="font-weight: bold;">фё</i></p>
-          <p>афыв</p></div>
+        <div class="parent">
+          <div class="ql-editor" contenteditable="true" dir="auto">
+            <h1 data-placeholder="Title" data-label="Title">афыв</h1>
+            <address data-placeholder="Your name" data-label="Author" class="empty"><br></address>
+            <p class="endddd"><i style="font-weight: bold;">пф</i><span style="font-weight: bold;"><i>ыв</i>а</span><i>ф</i>п<i style="font-weight: bold;">фё</i></p>
+            <p>афыв</p>
+          </div>
+        </div>
 
         <div id="_tl_link_tooltip" class="tl_link_tooltip"></div>
         <div id="_tl_tooltip" class="tl_tooltip" [class.shown]="editor.active">

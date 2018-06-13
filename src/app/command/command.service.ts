@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import {SelectionService} from '../selection';
+import {backspaceBlock, blocks} from '../constants';
+
 
 @Injectable({providedIn: 'root'})
 export class CommandService {
 
   constructor(private selectionService: SelectionService) {
-    this.selectionService.renderer.listen('document', 'keydown.enter',
-        event => !!setTimeout(() => this.newLine(event)));
+    this.selectionService.renderer.listen('document', 'keydown.enter', event => !!setTimeout(() => this.newLine(event)));
+    this.selectionService.renderer.listen('document', 'keydown.backspace', event => this.backspace(event));
+
   }
 
   public h1(active: boolean) {
@@ -60,16 +63,23 @@ export class CommandService {
 
   public insertOrderedList() {
     this.exec('insertOrderedList');
+    this.selectionService.deleteParentTag(null, 'ol');
     this.selectionService.updateActive();
   }
 
   public insertUnorderedList() {
     this.exec('insertUnorderedList');
+    this.selectionService.deleteParentTag(null, 'ul');
     this.selectionService.updateActive();
   }
 
   public blockquote(active: boolean) {
-    this.exec('formatBlock', false, active ? 'p' : 'blockquote');
+    if (active) {
+      this.selectionService.replaceOuterTag(null, 'blockquote', 'p');
+    } else {
+      this.exec('formatBlock', false, 'blockquote');
+    }
+
     this.selectionService.updateActive();
   }
 
@@ -111,15 +121,50 @@ export class CommandService {
   }
 
   private newLine(event: Event) {
-    const selection = document.getSelection();
-    const tagName = 'p';
+    const ancestor = this.selectionService.getSelection().getRangeAt(0).commonAncestorContainer;
 
-    const elem = this.selectionService.renderer.createElement(tagName);
-    elem.innerHTML = '<br/>';
+    console.log(ancestor.parentElement.closest('ul'));
+    console.log(ancestor.parentElement.closest('ol'));
+    const endPositionLine = ancestor.textContent;
+    if (!!endPositionLine || this.closestBlocks(ancestor.parentElement, ['ul', 'ol'])) { return; }
 
-    const replaceElem = selection.anchorNode.parentElement;
-    if (replaceElem.nodeName.toLowerCase() === tagName) {
-      replaceElem.parentElement.replaceChild(elem, replaceElem);
+    this.selectionService.replaceOuterTags(this.selectionService.getRangeContent(), blocks);
+    this.insertP();
+  }
+
+  public backspace(event: Event) {
+    const element = this.selectionService.getRangeContent();
+
+    let block: Element = this.closestBlocks(element, backspaceBlock);
+    if (block && !block.textContent) {
+      event.preventDefault();
+      block.remove();
+      this.insertP();
     }
   }
+
+  private insertP() {
+    this.exec('insertHTML', true, '<p><br/></p>');
+    this.exec('removeFormat', true);
+  }
+
+  private closestBlocks(elem: HTMLElement, blocks: string[]): Element {
+    return blocks.map(block => elem.closest(block)).find(elem => !!elem);
+  }
+
+  // UNDO
+  //
+  // save
+  // const clone = this.selectionService.rootElem.cloneNode(true);
+  // const save = this.selectionService.getSelection().getBookmark(this.selectionService.parentRootElem);
+  // this.a.push({range: save, html: clone});
+  //
+  // restore
+  // const a = this.a.pop();
+  // const parent = this.selectionService.rootElem.parentElement;
+  // this.selectionService.renderer.removeChild(parent, this.selectionService.rootElem);
+  // this.selectionService.renderer.appendChild(parent, a.html);
+  // this.selectionService.getSelection().moveToBookmark(a.range);
+  //
+
 }
