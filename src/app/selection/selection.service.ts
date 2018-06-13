@@ -1,9 +1,10 @@
 import {Injectable, Renderer2, RendererFactory2} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {Elements} from '../constants';
+import {backspaceBlock, blocks, Elements} from '../constants';
 import {SelectionEditor} from './selection';
 import {Blockquote, Cite, Dd, Del, Dt, H1, H2, H3, Ins, OrderedList, UnorderedList} from './blocks';
 import {SelectionLogicService} from './selection-logic.service';
+import * as rangy from 'rangy';
 
 @Injectable({providedIn: 'root'})
 export class SelectionService {
@@ -12,7 +13,7 @@ export class SelectionService {
 
   private _renderer: Renderer2;
   constructor(private rendererFactory: RendererFactory2,
-              private selectionLogigService: SelectionLogicService) {
+              private selectionLogicService: SelectionLogicService) {
     this.onInit();
   }
 
@@ -30,9 +31,13 @@ export class SelectionService {
     return document.querySelector('.' + Elements.ROOT_ELEMENT);
   }
 
+  get parentRootElem(): Element {
+    return document.querySelector('.' + Elements.PARENT_ROOT_ELEMENT);
+  }
+
   private onSelect(event?: Event) {
-    const selection = window.getSelection();
-    if (window.getSelection().isCollapsed) {
+    const selection = this.getSelection();
+    if (selection.isCollapsed) {
       this.subjectSelected.next(new SelectionEditor());
       return;
     }
@@ -133,12 +138,12 @@ export class SelectionService {
     this.onSelect();
   }
 
-  public getRange(): Range {
-    return window.getSelection().getRangeAt(0);
+  public getRange(): RangyRange {
+    return rangy.getSelection().getRangeAt(0);
   }
 
-  public getSelection(): Selection {
-    return window.getSelection();
+  public getSelection(): RangySelection {
+    return rangy.getSelection();
   }
 
   public getRangeContent(): HTMLElement {
@@ -147,19 +152,73 @@ export class SelectionService {
   }
 
   public activeAll(tagName: string, withoutInner: boolean = false): boolean {
-    return this.selectionLogigService.activeAll(this.getRange(), this.getRangeContent(), tagName, withoutInner);
+    return this.selectionLogicService.activeAll(this.getRange(), this.getRangeContent(), tagName, withoutInner);
+  }
+
+  public deleteParentTag(element?: Element, tagName: string = 'p') {
+    element = element || this.getRangeContent();
+    if (tagName) {
+      element = element.closest(tagName);
+      element = element && element.parentElement;
+    }
+    if (!element) { return; }
+    element.parentElement.replaceChild(element.firstChild.cloneNode(true), element);
+  }
+
+  public deleteOuterTags(element?: HTMLElement, tagName: string[] = []) {
+    return tagName.some(tag => this.deleteOuterTag(element, tag));
+  }
+
+  public deleteOuterTag(element?: HTMLElement, tagName: string = 'p') {
+    element = element || this.getRangeContent();
+    const parent = element.closest(tagName);
+    if (!parent) { return false; }
+    parent.remove();
+
+    return true;
+  }
+
+  public replaceOuterTags(element: HTMLElement, findTagsName: string[], tagName: string = 'p') {
+    findTagsName.forEach(tag => this.replaceOuterTag(element, tag, tagName))
+  }
+
+  public replaceOuterTag(element?: Element, findTagName: string = null, tagName: string = 'p') {
+    let elem;
+    element = element || this.getRangeContent();
+    if (!findTagName) {
+      elem = element;
+    } else {
+      elem = element.closest(findTagName);
+    }
+
+    if (!elem) { return; }
+
+    let newElem: Element = this.renderer.createElement(tagName);
+    newElem.innerHTML = elem.innerHTML;
+    console.log('newElem.firstChild', newElem.firstChild.nodeName.toLowerCase());
+    if (backspaceBlock.includes(newElem.firstChild.nodeName.toLowerCase())) {
+      newElem = <any>newElem.firstChild;
+    }
+    elem.parentElement.replaceChild(newElem, elem);
   }
 
   public deleteTagSelected(tagName: string) {
-    this.selectionLogigService.deleteTagSelected(this.getRange(), tagName);
+    this.selectionLogicService.deleteTagSelected(this.getRange(), tagName);
   }
 
   public replaceSelected(currentTag: string, replaceTag: string) {
-    this.selectionLogigService.replaceSelected(this.getRange(), currentTag, replaceTag);
+    this.selectionLogicService.replaceSelected(this.getRange(), currentTag, replaceTag);
+  }
+
+  public wrapTag(element: Element, tagName: string = 'p'): Element {
+    const newElem: Element = this.renderer.createElement(tagName);
+    newElem.appendChild(element.cloneNode(true));
+    console.log(newElem);
+    element.parentElement.replaceChild(newElem, element);
+    return newElem;
   }
 
   public wrapSelected(currentTag: string, replaceTag: string) {
-   this.selectionLogigService.wrapSelected(this.getRange(), currentTag, replaceTag);
+   this.selectionLogicService.wrapSelected(this.getRange(), currentTag, replaceTag);
   }
-
 }
