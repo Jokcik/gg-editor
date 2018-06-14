@@ -4,6 +4,7 @@
 .spoiler-block {
   position: relative;
   margin: 0 0 24px;
+  color: $white;
   box-sizing: border-box;
   >*{
     box-sizing: border-box;
@@ -14,8 +15,7 @@
     font-size: 14px;
     line-height: normal;
     min-height: 32px;
-    color: $white;
-    background-color: rgba(79, 89, 119, 0.3);
+    background-color: $spoiler;
     cursor: pointer;
     border-radius: 2px;
     user-select: none;
@@ -24,12 +24,12 @@
       position: absolute;
       top: 7px;
       right: 16px;
-      color: $linkBlue;
+      color: $linkColor;
     }
     &:hover {
       background-color: $spoilerHover;
       &:after {
-        color: $linkBlueHover;
+        color: $linkColorHover;
       }
     }
   }
@@ -39,9 +39,6 @@
     height: 0;
     overflow: hidden;
     transition: height 0.35s ease-in-out;
-    .inner-block {
-      padding: 30px;
-    }
   }
   &.active {
     .spoiler-head {
@@ -51,9 +48,24 @@
       }
     }
     .spoiler-content {
-      padding: 18px 24px;
+      padding: 14px 30px;
       height: auto;
-      border-color: rgba(79, 89, 119, 0.3);
+      border-color: $spoiler;
+    }
+  }
+  &.white{
+    color: $black;
+    .spoiler-head{
+      background-color: $lightBg;
+      &:hover {
+        background-color: $spoilerHover;
+        &:after {
+          color: $linkColorHover;
+        }
+      }
+    }
+    .spoiler-content{
+      border-color: $lightBg;
     }
   }
 }

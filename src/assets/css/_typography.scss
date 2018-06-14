@@ -4,6 +4,9 @@
   width: 740px;
   padding: 0 20px;
   background-color: $darkTwo;
+  &.white{
+    background-color: $white;
+  }
 }
 .gg-colors {
   color: $white;
@@ -45,10 +48,10 @@ p {
 }
 
 a {
-  color: $linkBlue;
+  color: $linkColor;
   text-decoration: none;
   &:hover {
-    color: $linkBlueHover;
+    color: $linkColorHover;
   }
   &:focus {
     border-bottom: 1px solid rgba(115, 173, 255, 0.25);
@@ -81,20 +84,23 @@ dl {
 }
 
 cite {
-  padding: 8px 14px;
+  padding: 6px 14px 7px;
   font-size: 14px;
   font-style: normal;
-  color: $linkBlue;
+  color: $linkColor;
   background-color: $citeBG;
   border-radius: 1px;
   &:before {
     content: '';
-    margin: 7px 8px 0 0;
+    margin: 6px 8px 0 0;
     display: inline-block;
     vertical-align: top;
     width: 12px;
     height: 12px;
     background: url('../img/outer-link.svg') no-repeat;
+  }
+  &:hover{
+    color: $linkColorHover;
   }
 }
 
@@ -156,3 +162,25 @@ ol {
   }
 }
 
+.white{
+  color: $black;
+  a{
+    color: $linkColorWhite;
+    &:hover{
+      color: $linkColorWhiteHover;
+    }
+  }
+  blockquote{
+    color: $mainColor;
+  }
+  cite{
+    background-color: $lightBg;
+    color: $linkColorWhite;
+    &:before {
+      background: url('../img/outer-link-white.svg') no-repeat;
+    }
+    &:hover{
+      color: $linkColorWhiteHover;
+    }
+  }
+}

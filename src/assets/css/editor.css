@@ -2,6 +2,7 @@
 .spoiler-block {
   position: relative;
   margin: 0 0 24px;
+  color: #fff;
   box-sizing: border-box; }
   .spoiler-block > * {
     box-sizing: border-box; }
@@ -11,8 +12,7 @@
     font-size: 14px;
     line-height: normal;
     min-height: 32px;
-    color: #fff;
-    background-color: rgba(79, 89, 119, 0.3);
+    background-color: #252e41;
     cursor: pointer;
     border-radius: 2px;
     user-select: none; }
@@ -32,22 +32,32 @@
     height: 0;
     overflow: hidden;
     transition: height 0.35s ease-in-out; }
-    .spoiler-block .spoiler-content .inner-block {
-      padding: 30px; }
   .spoiler-block.active .spoiler-head {
     border-radius: 2px 2px 0 0; }
     .spoiler-block.active .spoiler-head:after {
       content: attr(data-hide); }
   .spoiler-block.active .spoiler-content {
-    padding: 18px 24px;
+    padding: 14px 30px;
     height: auto;
-    border-color: rgba(79, 89, 119, 0.3); }
+    border-color: #252e41; }
+  .spoiler-block.white {
+    color: #000; }
+    .spoiler-block.white .spoiler-head {
+      background-color: #e4e8ee; }
+      .spoiler-block.white .spoiler-head:hover {
+        background-color: #26385e; }
+        .spoiler-block.white .spoiler-head:hover:after {
+          color: #4f98ff; }
+    .spoiler-block.white .spoiler-content {
+      border-color: #e4e8ee; }
 
 .testing {
   margin: 0 auto;
   width: 740px;
   padding: 0 20px;
   background-color: #0d1221; }
+  .testing.white {
+    background-color: #fff; }
 
 .gg-colors {
   color: #fff; }
@@ -109,7 +119,7 @@ dl dd {
   margin-left: 0; }
 
 cite {
-  padding: 8px 14px;
+  padding: 6px 14px 7px;
   font-size: 14px;
   font-style: normal;
   color: #73adff;
@@ -117,12 +127,14 @@ cite {
   border-radius: 1px; }
   cite:before {
     content: '';
-    margin: 7px 8px 0 0;
+    margin: 6px 8px 0 0;
     display: inline-block;
     vertical-align: top;
     width: 12px;
     height: 12px;
     background: url("../img/outer-link.svg") no-repeat; }
+  cite:hover {
+    color: #4f98ff; }
 
 del {
   color: #fe4b4b; }
@@ -164,6 +176,22 @@ ol li:before {
   padding-right: 12px;
   counter-increment: list;
   content: counter(list) "."; }
+
+.white {
+  color: #000; }
+  .white a {
+    color: #006aff; }
+    .white a:hover {
+      color: #589dff; }
+  .white blockquote {
+    color: #233056; }
+  .white cite {
+    background-color: #e4e8ee;
+    color: #006aff; }
+    .white cite:before {
+      background: url("../img/outer-link-white.svg") no-repeat; }
+    .white cite:hover {
+      color: #589dff; }
 
 .buttons button {
   color: white;
