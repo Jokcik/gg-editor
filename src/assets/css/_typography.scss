@@ -77,9 +77,15 @@ blockquote {
 dl {
   dt {
     font-weight: bold;
+    &:before{
+      content:'\2014';
+    }
   }
   dd {
     margin-left: 0;
+    &:before{
+      content:'\2014';
+    }
   }
 }
 

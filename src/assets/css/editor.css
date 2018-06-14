@@ -115,8 +115,12 @@ blockquote {
 
 dl dt {
   font-weight: bold; }
+  dl dt:before {
+    content: '\2014'; }
 dl dd {
   margin-left: 0; }
+  dl dd:before {
+    content: '\2014'; }
 
 cite {
   padding: 6px 14px 7px;
