@@ -3,6 +3,7 @@ import {SelectionEditor, SelectionService} from './selection';
 import {CommandService} from './command';
 import {LinkBlot} from './parchment/link';
 import Parchment from 'parchment';
+import {Clipboard} from './quill/clipboard';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +17,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(LinkBlot);
-    console.log(Parchment.create('link').parent);
+    const a = new Clipboard();
+    console.log(a.init(this.selectionService.rootElem));
+    // console.log(LinkBlot);
+    // console.log(Parchment.Text.create('link'));
     this.selectionService.selected$.subscribe(result => this.editor = result)
   }
 
