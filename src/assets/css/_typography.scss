@@ -1,39 +1,58 @@
-// gg colors ;
-$red: #fe4b4b;
-$green: #43b85b;
-$linkBlue: #73adff;
-$linkBlueHover: #4f98ff;
-$citeBG: #2b3553;
+// временные стили;
+.testing{
+  margin: 0 auto 30px;
+  width: 740px;
+  font-size: 16px;
+  padding: 0 20px;
+  background-color: $darkTwo;
+  &.white{
+    background-color: $white;
+  }
+}
+.gg-colors {
+  color: $white;
+}
 
 body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 1em;
 }
 
+h1,h2,h3 {
+  font-weight: 600;
+}
 h1 {
-  font-size: 48px;
-  letter-spacing: 1px;
+  font-size: 37px;
+  line-height: 1.406;
+  letter-spacing: 0.4px;
+  margin: 0 0 9px;
 }
 
 h2 {
-  font-size: 32px;
-  letter-spacing: 0.5px;
+  font-size: 29px;
+  line-height: 1.38;
+  letter-spacing: 0.2px;
+  margin: 0 0 14px;
 }
 
 h3 {
-  font-size: 24px;
+  font-size: 22px;
+  line-height: 1.5;
+  margin-bottom: 13px;
 }
 
 p {
+  margin: 12px 0;
   font-size: 16px;
-  line-height: 1.625;
+  line-height: 1.75;
+  letter-spacing: -0.2px;
 }
 
 a {
-  color: $linkBlue;
+  color: $linkColor;
   text-decoration: none;
+  letter-spacing: -0.2px;
   &:hover {
-    color: $linkBlueHover;
+    color: $linkColorHover;
   }
   &:focus {
     border-bottom: 1px solid rgba(115, 173, 255, 0.25);
@@ -43,32 +62,53 @@ a {
   }
 }
 
-strong,b{
+strong, b {
   font-weight: bold;
 }
 
 blockquote {
-  margin: 1em 0;
+  margin: 12px 0;
   font-size: 20px;
   line-height: 1.6;
   font-style: italic;
+  color: $veryLightBlue;
+  letter-spacing: 0;
+}
+
+dl {
+  letter-spacing: -0.2px;
+  dt {
+    font-weight: bold;
+    &:before{
+      content:'\2014';
+    }
+  }
+  dd {
+    margin-left: 0;
+    &:before{
+      content:'\2014';
+    }
+  }
 }
 
 cite {
-  padding: 8px 14px;
+  padding: 6px 14px 7px;
   font-size: 14px;
   font-style: normal;
-  color: $linkBlue;
+  color: $linkColor;
   background-color: $citeBG;
   border-radius: 1px;
-  &:before{
-    content:'';
-    margin: 7px 8px 0 0;
+  &:before {
+    content: '';
+    margin: 6px 8px 0 0;
     display: inline-block;
     vertical-align: top;
     width: 12px;
     height: 12px;
     background: url('../img/outer-link.svg') no-repeat;
+  }
+  &:hover{
+    color: $linkColorHover;
   }
 }
 
@@ -80,48 +120,76 @@ ins {
   color: $green;
 }
 
-hr{
+hr {
   //border: solid 2px #233056;
   height: 2px;
   border: none;
-  background: linear-gradient(to right, #233056 50%, transparent 50%), linear-gradient(to right, #233056 50%, transparent 50%) repeat-x;
+  background: linear-gradient(to right, $white 50%, transparent 50%) repeat-x;
   background-size: 25px 2px;
 }
-ul,ol{
+
+ul, ol {
+  margin-bottom: 24px;
   padding: 0;
   list-style: none;
+  letter-spacing: -0.2px;
   counter-reset: list;
-  li{
-    margin: 0 0 14px 30px;
+  li {
+    margin: 0 0 11px 30px;
     padding: 0;
     position: relative;
-    &:before{
+    &:before {
       position: absolute;
       display: inline-block;
       box-sizing: border-box;
-      width: 78px;
-      margin: 0 0 0 -78px;
+      width: 20px;
+      margin: 0 0 0 -24px;
       text-align: right
     }
   }
 }
-ul{
-  li{
-    &:before{
+
+ul {
+  li {
+    &:before {
       padding: 1px 15px 0 0;
-      content:'\2022';
+      content: '\2022';
     }
   }
 }
-ol{
-  li{
-    &:before{
+
+ol {
+  li {
+    &:before {
       font-feature-settings: 'liga' on, 'lnum' on;
       -moz-font-feature-settings: 'liga' on, 'lnum' on;
       -webkit-font-feature-settings: 'liga' on, 'lnum' on;
       padding-right: 12px;
       counter-increment: list;
       content: counter(list) '.'
+    }
+  }
+}
+
+.white{
+  color: $black;
+  a{
+    color: $linkColorWhite;
+    &:hover{
+      color: $linkColorWhiteHover;
+    }
+  }
+  blockquote{
+    color: $mainColor;
+  }
+  cite{
+    background-color: $lightBg;
+    color: $linkColorWhite;
+    &:before {
+      background: url('../img/outer-link-white.svg') no-repeat;
+    }
+    &:hover{
+      color: $linkColorWhiteHover;
     }
   }
 }

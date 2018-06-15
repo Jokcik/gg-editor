@@ -1,5 +1,5 @@
 <div class="tl_page_wrap" xmlns="http://www.w3.org/1999/html">
-  <div class="tl_page">
+  <div class="tl_page" style="background: #fff;">
     <main class="tl_article tl_article_editable tl_article_edit title_focused">
       <header class="tl_article_header">
         <h1 dir="auto"></h1>
@@ -12,88 +12,30 @@
       <article id="_tl_editor" class="tl_article_content ql-container">
         <div class="ql-editor" contenteditable="true" dir="auto">
           <h1 data-placeholder="Title" data-label="Title">h1 Lorem ipsum</h1>
-          <h2>h2 Заголовок, средний весьма</h2>
-          <h3>h3 Заголовок самый обычный</h3>
-          <p>Lorem <a href="#">this is link</a></p>
-          <p><strong>This is strong</strong> <b>This is b</b></p>
-          <blockquote>
-            Блэйз уже побывал во множестве боев — и всякий раз задает врагам жару. В этом обзоре мы собрали все, что
-            нужно знать об этом новом герое-бойце, и советы, как за него играть.
-          </blockquote>
-          <!--<p>-->
-            <!--<del>sadasdasd</del>-->
-          <!--</p>-->
-          <dl>
-            <dt>
-              — Очень рады с тобой познакомиться. Можешь коротко представить себя?
-            </dt>
-            <dd>
-              — Да, конечно. Меня зовут Эммали Гарридо, а в игре мой ник "EMUHLEET". Днем я работаю в качестве медсестры
-              в центре вытрезвления и лечения алкогольной зависимости. А по ночам я – фулл-тайм прогеймер и лидер
-              женской команды Team Dignitas по Counter-Strike: Global Offensive.
-            </dd>
-          </dl>
-          <p>
-            <em>em предназначен для акцентирования текста. Браузеры отображают такой текст курсивным начертанием.</em>
-          </p>
-          <p>
-            <i>i устанавливает курсивное начертание шрифта. Допустимо использовать этот тег совместно с другими тегами,
-              которые определяют начертание текста.</i>
-          </p>
-          <hr>
-          <ul>
-            <li>Пиромания (D): Дает 25 ед. брони и наносит находящимся рядом противникам 40 ед. урона раз в 0.5 сек.
-              в течение 4 сек. Каждое попадание «Струей пламени» по герою сокращает время восстановления «Пиромании» на
-              5 сек.
-            </li>
-            <li>Пиромания (D): Дает 25 ед. брони и наносит находящимся рядом противникам 40 ед. урона раз в 0.5 сек.
-              в течение 4 сек. Каждое попадание «Струей пламени» по герою сокращает время восстановления «Пиромании» на
-              5 сек.
-            </li>
-            <li>Пиромания (D): Дает 25 ед. брони и наносит находящимся рядом противникам 40 ед. урона раз в 0.5 сек.
-              в течение 4 сек. Каждое попадание «Струей пламени» по герою сокращает время восстановления «Пиромании» на
-              5 сек.
-            </li>
-          </ul>
-          <ol>
-            <li>Пиромания (D): Дает 25 ед. брони и наносит находящимся рядом противникам 40 ед. урона раз в 0.5 сек.
-              в течение 4 сек. Каждое попадание «Струей пламени» по герою сокращает время восстановления «Пиромании» на
-              5 сек.
-            </li>
-            <li>Пиромания (D): Дает 25 ед. брони и наносит находящимся рядом противникам 40 ед. урона раз в 0.5 сек.
-              в течение 4 сек. Каждое попадание «Струей пламени» по герою сокращает время восстановления «Пиромании» на
-              5 сек.
-            </li>
-            <li>Пиромания (D): Дает 25 ед. брони и наносит находящимся рядом противникам 40 ед. урона раз в 0.5 сек.
-              в течение 4 сек. Каждое попадание «Струей пламени» по герою сокращает время восстановления «Пиромании» на
-              5 сек.
-            </li>
-          </ol>
+
         </div>
         <div id="_tl_link_tooltip" class="tl_link_tooltip"></div>
         <div id="_tl_tooltip" class="tl_tooltip" [class.shown]="editor.active">
           <div class="buttons">
             <span class="button_hover"></span>
             <span class="button_group">
-              <button id="_bold_button" [class.active]="editor.bold.active" (click)="bold()"></button>
-              <button id="_italic_button" [class.active]="editor.italic.active" (click)="italic()"></button>
-              <button id="_link_button" [class.active]="editor.link.active" (click)="link()"></button>
+              <button id="_bold_button" [class.active]="editor.activeBold" (click)="bold()"></button>
+              <button id="_italic_button" [class.active]="editor.activeItalic" (click)="italic()"></button>
+              <button id="_link_button" [class.active]="editor.activeLink" (click)="editor.activeLink ? unlink() : addLink()"></button>
             </span>
             <span class="button_group">
-              <!--<button [class.active]="editor.h1.active" [class.disabled]="!editor.h1.active && editor.h1.check" (click)="formatH1()">H1</button>-->
-              <!--<button id="_header_button" [class.active]="editor.h2.active" (click)="formatH2()"></button>-->
-              <!--<button id="_subheader_button" [class.active]="editor.h3.active" (click)="formatH3()"></button>-->
-              <!--<button id="_quote_button" [class.active]="editor.blockquote.active" (click)="formatBlockquote()"></button>-->
-              <!--<button [class.active]="editor.cite.active" (click)="formatCite()">CIT</button>-->
-              <button (click)="spoiler()">sp</button>
-              <button [class.active]="editor.del.active" (click)="delete()">DEL</button>
-              <button [class.active]="editor.ins.active" (click)="ins()">INS</button>
-              <!--<button [class.active]="editor.dd.active" (click)="formatDd()">DD</button>-->
-              <!--<button [class.active]="editor.dt.active" (click)="formatDt()">DT</button>-->
-              <!--<button [class.active]="editor.orderedList.active" (click)="formatOrderedList()">ol</button>-->
-              <!--<button [class.active]="editor.unorderedList.active" (click)="formatUnorderedList()">ul</button>-->
-              <button (click)="divider()">HR</button>
-              <button (click)="img()">img</button>
+              <button [class.active]="editor.h1.active" [class.disabled]="!editor.h1.active && editor.h1.check" (click)="formatH1()">H1</button>
+              <button id="_header_button" [class.active]="editor.h2.active" (click)="formatH2()"></button>
+              <button id="_subheader_button" [class.active]="editor.h3.active" (click)="formatH3()"></button>
+              <button id="_quote_button" [class.active]="editor.blockquote.active" (click)="formatBlockquote()"></button>
+              <button [class.active]="editor.cite.active" (click)="formatCite()">CIT</button>
+              <button [class.active]="editor.del.active" (click)="formatDel()">DEL</button>
+              <button [class.active]="editor.ins.active" (click)="formatIns()">INS</button>
+              <button [class.active]="editor.dd.active" (click)="formatDd()">DD</button>
+              <button [class.active]="editor.dt.active" (click)="formatDt()">DT</button>
+              <button [class.active]="editor.orderedList.active" (click)="formatOrderedList()">ol</button>
+              <button [class.active]="editor.unorderedList.active" (click)="formatUnorderedList()">ul</button>
+              <button (click)="appendHr()">HR</button>
             </span>
           </div>
           <div class="prompt">
@@ -102,7 +44,8 @@
           </div>
         </div>
       </article>
-
     </main>
   </div>
 </div>
+
+<app-test>Loading...</app-test>

@@ -1,0 +1,63 @@
+<div class="testing gg-colors" [class.white]="toggler">
+  <div (click)="toggler = !toggler" style="cursor: pointer; display: inline-block;"><h2>Нажми чтобы поменять цвет</h2></div>
+  <h1>h1 Съешь как еще этих вкусных французских булок, дружок-пирожок</h1>
+  <h2>h2 Съешь как еще этих вкусных французских булок, дружок-пирожок</h2>
+  <h3>h3 Съешь как еще этих вкусных французских булок, дружок-пирожок</h3>
+  <p>обычный p с a внутри Lorem <a href="#">this is link</a></p>
+  <div class="spoiler-block active" [class.white]="toggler" [class.active]="togglerSpoiler" (click)="togglerSpoiler = !togglerSpoiler">
+    <div class="spoiler-head" data-show="показать" data-hide="скрыть">Спойлер.Очень длинный заголовок спойлера очень длинный заголовок спойлера очень…</div>
+    <div class="spoiler-content">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+      pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+      laborum.
+    </div>
+  </div>
+  <p>strong и b<strong>This is strong</strong> <b>This is b</b></p>
+  <p>
+    Playerunnknown Batllegrounds не очень <del>но это не точно</del> <ins>это точно</ins>.
+    Тег q используется <q>для выделения в тексте цитат</q>. Содержимое контейнера автоматически отображается в браузере в кавычках.
+  </p>
+  <q>Это цитата в одну строку, тут только ковычки</q>
+  <blockquote>
+    Блэйз уже побывал во множестве боев — и всякий раз задает врагам жару. В этом обзоре мы собрали все, что
+    нужно знать об этом новом герое-бойце, и советы, как за него играть.
+  </blockquote>
+  <cite><a href="https://battle.net/" target="_blank">battle.net</a></cite>
+  <dl>
+    <dt>
+      Очень рады с тобой познакомиться. Можешь коротко представить себя?
+    </dt>
+    <dd>
+      Да, конечно. Меня зовут Эммали Гарридо, а в игре мой ник "EMUHLEET". Днем я работаю в качестве медсестры
+      в центре вытрезвления и лечения алкогольной зависимости. А по ночам я – фулл-тайм прогеймер и лидер
+      женской команды Team Dignitas по Counter-Strike: Global Offensive.
+    </dd>
+  </dl>
+  <p>
+    <em>em предназначен для акцентирования текста. Браузеры отображают такой текст курсивным начертанием.</em>
+  </p>
+  <p>
+    <i>i устанавливает курсивное начертание шрифта. Допустимо использовать этот тег совместно с другими тегами,
+      которые определяют начертание текста.</i>
+  </p>
+  <hr>
+  <ul>
+    <li>
+      Пиромания (D): Дает 25 ед. брони и наносит находящимся рядом противникам 40 ед. урона раз в 0.5 сек. в течение 4
+      сек. Каждое попадание «Струей пламени» по герою сокращает время восстановления «Пиромании» на 5 сек.
+    </li>
+    <li>
+      Второй буллет
+    </li>
+  </ul>
+  <ol>
+    <li>
+      После паузы в 0.5 сек. совершает рывок, нанося первому герою на своем пути и находящимся рядом с ним героям 52 ед. урона, а также оглушая их на 1.25
+    </li>
+    <li>
+      Второй пункт в списке
+    </li>
+  </ol>
+</div>

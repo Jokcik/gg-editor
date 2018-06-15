@@ -7,10 +7,12 @@ import {SelectionService} from './selection';
 import {CommonModule} from '@angular/common';
 import {CommandService} from './command';
 import {SelectionLogicService} from './selection/selection-logic.service';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
