@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestComponent implements OnInit {
   public toggler: false;
+  public togglerSpoiler: false;
   constructor() { }
 
   ngOnInit() {

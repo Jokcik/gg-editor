@@ -34,6 +34,7 @@
     }
   }
   .spoiler-content {
+    margin-top: -2px;
     border: 2px solid transparent;
     border-top: none;
     height: 0;
@@ -48,7 +49,7 @@
       }
     }
     .spoiler-content {
-      padding: 14px 30px;
+      padding: 16px 30px 14px;
       height: auto;
       border-color: $spoiler;
     }
@@ -58,7 +59,7 @@
     .spoiler-head{
       background-color: $lightBg;
       &:hover {
-        background-color: $spoilerHover;
+        background-color: $veryLightBlue;
         &:after {
           color: $linkColorHover;
         }

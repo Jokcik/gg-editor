@@ -1,13 +1,10 @@
-<div (click)="toggler = !toggler">
-  <label for="toggler">Рубильник для версии</label>
-  <input id="toggler" type="checkbox">
-</div>
 <div class="testing gg-colors" [class.white]="toggler">
+  <div (click)="toggler = !toggler" style="cursor: pointer; display: inline-block;"><h2>Нажми чтобы поменять цвет</h2></div>
   <h1>h1 Съешь как еще этих вкусных французских булок, дружок-пирожок</h1>
   <h2>h2 Съешь как еще этих вкусных французских булок, дружок-пирожок</h2>
   <h3>h3 Съешь как еще этих вкусных французских булок, дружок-пирожок</h3>
   <p>обычный p с a внутри Lorem <a href="#">this is link</a></p>
-  <div class="spoiler-block active">
+  <div class="spoiler-block active" [class.white]="toggler" [class.active]="togglerSpoiler" (click)="togglerSpoiler = !togglerSpoiler">
     <div class="spoiler-head" data-show="показать" data-hide="скрыть">Спойлер.Очень длинный заголовок спойлера очень длинный заголовок спойлера очень…</div>
     <div class="spoiler-content">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -63,5 +60,4 @@
       Второй пункт в списке
     </li>
   </ol>
-  <p>111111</p>
 </div>

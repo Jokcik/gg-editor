@@ -27,6 +27,7 @@
       .spoiler-block .spoiler-head:hover:after {
         color: #4f98ff; }
   .spoiler-block .spoiler-content {
+    margin-top: -2px;
     border: 2px solid transparent;
     border-top: none;
     height: 0;
@@ -37,7 +38,7 @@
     .spoiler-block.active .spoiler-head:after {
       content: attr(data-hide); }
   .spoiler-block.active .spoiler-content {
-    padding: 14px 30px;
+    padding: 16px 30px 14px;
     height: auto;
     border-color: #252e41; }
   .spoiler-block.white {
@@ -45,14 +46,14 @@
     .spoiler-block.white .spoiler-head {
       background-color: #e4e8ee; }
       .spoiler-block.white .spoiler-head:hover {
-        background-color: #26385e; }
+        background-color: #dfecff; }
         .spoiler-block.white .spoiler-head:hover:after {
           color: #4f98ff; }
     .spoiler-block.white .spoiler-content {
       border-color: #e4e8ee; }
 
 .testing {
-  margin: 0 auto;
+  margin: 0 auto 30px;
   width: 740px;
   font-size: 16px;
   padding: 0 20px;
