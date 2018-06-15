@@ -54,6 +54,7 @@
 .testing {
   margin: 0 auto;
   width: 740px;
+  font-size: 16px;
   padding: 0 20px;
   background-color: #0d1221; }
   .testing.white {
@@ -63,8 +64,7 @@
   color: #fff; }
 
 body {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1em; }
+  font-family: 'Open Sans', sans-serif; }
 
 h1, h2, h3 {
   font-weight: 600; }
@@ -94,7 +94,8 @@ p {
 
 a {
   color: #73adff;
-  text-decoration: none; }
+  text-decoration: none;
+  letter-spacing: -0.2px; }
   a:hover {
     color: #4f98ff; }
   a:focus {
@@ -113,14 +114,16 @@ blockquote {
   color: #dfecff;
   letter-spacing: 0; }
 
-dl dt {
-  font-weight: bold; }
-  dl dt:before {
-    content: '\2014'; }
-dl dd {
-  margin-left: 0; }
-  dl dd:before {
-    content: '\2014'; }
+dl {
+  letter-spacing: -0.2px; }
+  dl dt {
+    font-weight: bold; }
+    dl dt:before {
+      content: '\2014'; }
+  dl dd {
+    margin-left: 0; }
+    dl dd:before {
+      content: '\2014'; }
 
 cite {
   padding: 6px 14px 7px;
@@ -156,6 +159,7 @@ ul, ol {
   margin-bottom: 24px;
   padding: 0;
   list-style: none;
+  letter-spacing: -0.2px;
   counter-reset: list; }
   ul li, ol li {
     margin: 0 0 11px 30px;

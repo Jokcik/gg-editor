@@ -2,6 +2,7 @@
 .testing{
   margin: 0 auto;
   width: 740px;
+  font-size: 16px;
   padding: 0 20px;
   background-color: $darkTwo;
   &.white{
@@ -14,7 +15,6 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 1em;
 }
 
 h1,h2,h3 {
@@ -50,6 +50,7 @@ p {
 a {
   color: $linkColor;
   text-decoration: none;
+  letter-spacing: -0.2px;
   &:hover {
     color: $linkColorHover;
   }
@@ -75,6 +76,7 @@ blockquote {
 }
 
 dl {
+  letter-spacing: -0.2px;
   dt {
     font-weight: bold;
     &:before{
@@ -130,6 +132,7 @@ ul, ol {
   margin-bottom: 24px;
   padding: 0;
   list-style: none;
+  letter-spacing: -0.2px;
   counter-reset: list;
   li {
     margin: 0 0 11px 30px;
