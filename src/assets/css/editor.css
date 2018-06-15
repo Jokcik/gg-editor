@@ -1,22 +1,96 @@
 @charset "UTF-8";
+.spoiler-block {
+  position: relative;
+  margin: 0 0 24px;
+  color: #fff;
+  box-sizing: border-box; }
+  .spoiler-block > * {
+    box-sizing: border-box; }
+  .spoiler-block .spoiler-head {
+    position: relative;
+    padding: 7px 98px 6px 14px;
+    font-size: 14px;
+    line-height: normal;
+    min-height: 32px;
+    background-color: #252e41;
+    cursor: pointer;
+    border-radius: 2px;
+    user-select: none; }
+    .spoiler-block .spoiler-head:after {
+      content: attr(data-show);
+      position: absolute;
+      top: 7px;
+      right: 16px;
+      color: #73adff; }
+    .spoiler-block .spoiler-head:hover {
+      background-color: #26385e; }
+      .spoiler-block .spoiler-head:hover:after {
+        color: #4f98ff; }
+  .spoiler-block .spoiler-content {
+    border: 2px solid transparent;
+    border-top: none;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.35s ease-in-out; }
+  .spoiler-block.active .spoiler-head {
+    border-radius: 2px 2px 0 0; }
+    .spoiler-block.active .spoiler-head:after {
+      content: attr(data-hide); }
+  .spoiler-block.active .spoiler-content {
+    padding: 14px 30px;
+    height: auto;
+    border-color: #252e41; }
+  .spoiler-block.white {
+    color: #000; }
+    .spoiler-block.white .spoiler-head {
+      background-color: #e4e8ee; }
+      .spoiler-block.white .spoiler-head:hover {
+        background-color: #26385e; }
+        .spoiler-block.white .spoiler-head:hover:after {
+          color: #4f98ff; }
+    .spoiler-block.white .spoiler-content {
+      border-color: #e4e8ee; }
+
+.testing {
+  margin: 0 auto;
+  width: 740px;
+  padding: 0 20px;
+  background-color: #0d1221; }
+  .testing.white {
+    background-color: #fff; }
+
+.gg-colors {
+  color: #fff; }
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 1em; }
 
+h1, h2, h3 {
+  font-weight: 600; }
+
 h1 {
-  font-size: 48px;
-  letter-spacing: 1px; }
+  font-size: 37px;
+  line-height: 1.406;
+  letter-spacing: 0.4px;
+  margin: 0 0 9px; }
 
 h2 {
-  font-size: 32px;
-  letter-spacing: 0.5px; }
+  font-size: 29px;
+  line-height: 1.38;
+  letter-spacing: 0.2px;
+  margin: 0 0 14px; }
 
 h3 {
-  font-size: 24px; }
+  font-size: 22px;
+  line-height: 1.5;
+  margin-bottom: 13px; }
 
 p {
+  margin: 12px 0;
   font-size: 16px;
-  line-height: 1.625; }
+  line-height: 1.75;
+  letter-spacing: -0.2px; }
 
 a {
   color: #73adff;
@@ -32,13 +106,24 @@ strong, b {
   font-weight: bold; }
 
 blockquote {
-  margin: 1em 0;
+  margin: 12px 0;
   font-size: 20px;
   line-height: 1.6;
-  font-style: italic; }
+  font-style: italic;
+  color: #dfecff;
+  letter-spacing: 0; }
+
+dl dt {
+  font-weight: bold; }
+  dl dt:before {
+    content: '\2014'; }
+dl dd {
+  margin-left: 0; }
+  dl dd:before {
+    content: '\2014'; }
 
 cite {
-  padding: 8px 14px;
+  padding: 6px 14px 7px;
   font-size: 14px;
   font-style: normal;
   color: #73adff;
@@ -46,12 +131,14 @@ cite {
   border-radius: 1px; }
   cite:before {
     content: '';
-    margin: 7px 8px 0 0;
+    margin: 6px 8px 0 0;
     display: inline-block;
     vertical-align: top;
     width: 12px;
     height: 12px;
     background: url("../img/outer-link.svg") no-repeat; }
+  cite:hover {
+    color: #4f98ff; }
 
 del {
   color: #fe4b4b; }
@@ -62,23 +149,24 @@ ins {
 hr {
   height: 2px;
   border: none;
-  background: linear-gradient(to right, #233056 50%, transparent 50%), linear-gradient(to right, #233056 50%, transparent 50%) repeat-x;
+  background: linear-gradient(to right, #fff 50%, transparent 50%) repeat-x;
   background-size: 25px 2px; }
 
 ul, ol {
+  margin-bottom: 24px;
   padding: 0;
   list-style: none;
   counter-reset: list; }
   ul li, ol li {
-    margin: 0 0 14px 30px;
+    margin: 0 0 11px 30px;
     padding: 0;
     position: relative; }
     ul li:before, ol li:before {
       position: absolute;
       display: inline-block;
       box-sizing: border-box;
-      width: 78px;
-      margin: 0 0 0 -78px;
+      width: 20px;
+      margin: 0 0 0 -24px;
       text-align: right; }
 
 ul li:before {
@@ -92,6 +180,22 @@ ol li:before {
   padding-right: 12px;
   counter-increment: list;
   content: counter(list) "."; }
+
+.white {
+  color: #000; }
+  .white a {
+    color: #006aff; }
+    .white a:hover {
+      color: #589dff; }
+  .white blockquote {
+    color: #233056; }
+  .white cite {
+    background-color: #e4e8ee;
+    color: #006aff; }
+    .white cite:before {
+      background: url("../img/outer-link-white.svg") no-repeat; }
+    .white cite:hover {
+      color: #589dff; }
 
 .buttons button {
   color: white;
@@ -169,7 +273,6 @@ textarea {
 .tl_message {
   font-family: CustomSansSerif, 'Lucida Grande', Arial, sans-serif;
   padding: 70px 0;
-  color: #79828B;
   text-align: center; }
 
 .tl_message h1 {
@@ -548,7 +651,6 @@ textarea {
   left: 0;
   right: 0;
   content: attr(data-placeholder);
-  color: rgba(0, 0, 0, 0.44);
   font-weight: 400;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -561,7 +663,6 @@ textarea {
 .tl_article.tl_article_edit [data-label]:after, .tl_article.tl_article_edit.title_focused [data-label].empty:after {
   position: absolute;
   content: attr(data-label);
-  color: rgba(0, 0, 0, 0.44);
   border-right: 1px solid rgba(0, 0, 0, 0.15);
   right: 100%;
   top: -6px;
@@ -589,16 +690,6 @@ textarea {
 .tl_article.tl_article_edit.title_required h1[data-label]:after {
   border-right: 1px solid rgba(255, 0, 0, 0.25);
   color: rgba(255, 0, 0, 0.75); }
-
-.tl_article .tl_article_content, .tl_article .tl_article_content .ql-editor, .tl_article .tl_article_header {
-  font-family: CustomSerif, Georgia, Cambria, 'Times New Roman', serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 18px;
-  line-height: 1.58;
-  padding: 0;
-  margin: 0;
-  color: rgba(0, 0, 0, 0.8); }
 
 .tl_article .ql-editor {
   height: 100%;
@@ -671,7 +762,6 @@ textarea {
 .tl_article .tl_article_content figcaption, .tl_article .tl_article_content figcaption .editable_input {
   font-family: CustomSansSerif, 'Lucida Grande', Arial, sans-serif;
   font-size: 15px;
-  color: #79828B;
   padding: 12px 21px 0;
   line-height: 18px;
   vertical-align: top;
@@ -735,7 +825,6 @@ textarea {
 .tl_article.tl_article_edit figcaption[data-placeholder].empty:after {
   position: relative;
   content: attr(data-placeholder);
-  color: rgba(0, 0, 0, 0.44);
   font-weight: 400; }
 
 .tl_article.tl_article_edit figcaption[data-placeholder].empty .editable_input {
@@ -747,7 +836,6 @@ textarea {
   font-family: CustomSansSerif, 'Lucida Grande', Arial, sans-serif;
   font-size: 15px;
   line-height: 18px;
-  color: #000;
   margin: 0 0 15px;
   white-space: pre-wrap; }
 
@@ -763,7 +851,6 @@ textarea {
 .error_msg {
   font-family: CustomSansSerif, 'Lucida Grande', Arial, sans-serif;
   font-size: 15px;
-  color: rgba(255, 0, 0, 0.75);
   font-style: normal;
   line-height: 18px;
   margin: 0 0 15px;
@@ -787,7 +874,6 @@ textarea {
   border-radius: 6px;
   line-height: 19px;
   padding: 7px 10px;
-  color: #fff;
   word-wrap: break-word;
   text-align: center;
   max-width: 300px;
