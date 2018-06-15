@@ -1,0 +1,9 @@
+<div class="spoiler-block" [class.active]="isActive">
+  <div class="spoiler-head" data-show="+" data-hide="-" (click)="isActive = !isActive">
+    <ng-content *ngIf="!title" select="gg-spoiler-title"></ng-content>
+    {{ title }}
+  </div>
+  <div class="spoiler-content">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -36,31 +36,31 @@ export class SelectionService {
   }
 
   private onSelect(event?: Event) {
-    const selection = this.getSelection();
-    if (selection.isCollapsed) {
-      this.subjectSelected.next(new SelectionEditor());
-      return;
-    }
-
-    const result: SelectionEditor = {
-      active: !selection.isCollapsed,
-      activeLink: this.isActiveLink(),
-      activeBold: this.isActiveBold(),
-      activeItalic: this.isActiveItalic(),
-      h1: this.isH1(),
-      h2: this.isH2(),
-      h3: this.isH3(),
-      blockquote: this.isBlockquote(),
-      cite: this.isCite(),
-      del: this.isDel(),
-      ins: this.isIns(),
-      dd: this.isDd(),
-      dt: this.isDt(),
-      orderedList: this.isOrederedList(),
-      unorderedList: this.isUnorederedList()
-    };
-
-    this.subjectSelected.next(result);
+    // const selection = this.getSelection();
+    // if (selection.isCollapsed) {
+    //   this.subjectSelected.next(new SelectionEditor());
+    //   return;
+    // }
+    //
+    // const result: SelectionEditor = {
+    //   active: !selection.isCollapsed,
+    //   activeLink: this.isActiveLink(),
+    //   activeBold: this.isActiveBold(),
+    //   activeItalic: this.isActiveItalic(),
+    //   h1: this.isH1(),
+    //   h2: this.isH2(),
+    //   h3: this.isH3(),
+    //   blockquote: this.isBlockquote(),
+    //   cite: this.isCite(),
+    //   del: this.isDel(),
+    //   ins: this.isIns(),
+    //   dd: this.isDd(),
+    //   dt: this.isDt(),
+    //   orderedList: this.isOrederedList(),
+    //   unorderedList: this.isUnorederedList()
+    // };
+    //
+    // this.subjectSelected.next(result);
   }
 
   private isActiveLink(): boolean {

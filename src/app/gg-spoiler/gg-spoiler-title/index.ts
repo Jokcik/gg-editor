@@ -1,0 +1,1 @@
+export * from './gg-spoiler-title.component'

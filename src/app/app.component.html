@@ -20,9 +20,9 @@
             Блэйз уже побывал во множестве боев — и всякий раз задает врагам жару. В этом обзоре мы собрали все, что
             нужно знать об этом новом герое-бойце, и советы, как за него играть.
           </blockquote>
-          <p>
-            sadasdasd
-          </p>
+          <!--<p>-->
+            <!--<del>sadasdasd</del>-->
+          <!--</p>-->
           <dl>
             <dt>
               — Очень рады с тобой познакомиться. Можешь коротко представить себя?
@@ -75,23 +75,25 @@
           <div class="buttons">
             <span class="button_hover"></span>
             <span class="button_group">
-              <button id="_bold_button" [class.active]="editor.activeBold" (click)="bold()"></button>
-              <button id="_italic_button" [class.active]="editor.activeItalic" (click)="italic()"></button>
-              <button id="_link_button" [class.active]="editor.activeLink" (click)="editor.activeLink ? unlink() : addLink()"></button>
+              <button id="_bold_button" [class.active]="editor.bold.active" (click)="bold()"></button>
+              <button id="_italic_button" [class.active]="editor.italic.active" (click)="italic()"></button>
+              <button id="_link_button" [class.active]="editor.link.active" (click)="link()"></button>
             </span>
             <span class="button_group">
-              <button [class.active]="editor.h1.active" [class.disabled]="!editor.h1.active && editor.h1.check" (click)="formatH1()">H1</button>
-              <button id="_header_button" [class.active]="editor.h2.active" (click)="formatH2()"></button>
-              <button id="_subheader_button" [class.active]="editor.h3.active" (click)="formatH3()"></button>
-              <button id="_quote_button" [class.active]="editor.blockquote.active" (click)="formatBlockquote()"></button>
-              <button [class.active]="editor.cite.active" (click)="formatCite()">CIT</button>
-              <button [class.active]="editor.del.active" (click)="formatDel()">DEL</button>
-              <button [class.active]="editor.ins.active" (click)="formatIns()">INS</button>
-              <button [class.active]="editor.dd.active" (click)="formatDd()">DD</button>
-              <button [class.active]="editor.dt.active" (click)="formatDt()">DT</button>
-              <button [class.active]="editor.orderedList.active" (click)="formatOrderedList()">ol</button>
-              <button [class.active]="editor.unorderedList.active" (click)="formatUnorderedList()">ul</button>
-              <button (click)="appendHr()">HR</button>
+              <!--<button [class.active]="editor.h1.active" [class.disabled]="!editor.h1.active && editor.h1.check" (click)="formatH1()">H1</button>-->
+              <!--<button id="_header_button" [class.active]="editor.h2.active" (click)="formatH2()"></button>-->
+              <!--<button id="_subheader_button" [class.active]="editor.h3.active" (click)="formatH3()"></button>-->
+              <!--<button id="_quote_button" [class.active]="editor.blockquote.active" (click)="formatBlockquote()"></button>-->
+              <!--<button [class.active]="editor.cite.active" (click)="formatCite()">CIT</button>-->
+              <button (click)="spoiler()">sp</button>
+              <button [class.active]="editor.del.active" (click)="delete()">DEL</button>
+              <button [class.active]="editor.ins.active" (click)="ins()">INS</button>
+              <!--<button [class.active]="editor.dd.active" (click)="formatDd()">DD</button>-->
+              <!--<button [class.active]="editor.dt.active" (click)="formatDt()">DT</button>-->
+              <!--<button [class.active]="editor.orderedList.active" (click)="formatOrderedList()">ol</button>-->
+              <!--<button [class.active]="editor.unorderedList.active" (click)="formatUnorderedList()">ul</button>-->
+              <button (click)="divider()">HR</button>
+              <button (click)="img()">img</button>
             </span>
           </div>
           <div class="prompt">
