@@ -9,7 +9,7 @@ import {GGSpoilerTitleComponent} from './gg-spoiler-title';
     BrowserModule,
   ],
   declarations: [
-    GGSpoilerTitleComponent,
+    // GGSpoilerTitleComponent,
     GGSpoilerComponent
   ],
   entryComponents: [
