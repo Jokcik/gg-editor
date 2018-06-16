@@ -15,33 +15,34 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
+  font-size: 100%;
 }
 h1,h2,h3 {
   font-weight: 600;
 }
 h1 {
-  font-size: 37px;
+  font-size: 231.25%;
   line-height: 52px;
   letter-spacing: 0.4px;
   margin: 0 0 9px;
 }
 
 h2 {
-  font-size: 29px;
+  font-size: 181.25%;
   line-height: 40px;
   letter-spacing: 0.2px;
   margin: 0 0 14px;
 }
 
 h3 {
-  font-size: 22px;
+  font-size: 137.5%;
   line-height: 32px;
   margin: 0 0 13px;
 }
 
 p {
   margin: 12px 0;
-  font-size: 16px;
+  font-size: 100%;
   line-height: 1.75;
   letter-spacing: -0.2px;
 }
@@ -89,7 +90,7 @@ strong, b {
 
 blockquote {
   margin: 13px 0;
-  font-size: 20px;
+  font-size: 125%;
   line-height: 1.6;
   font-style: italic;
   color: $veryLightBlue;
@@ -113,23 +114,38 @@ dl {
 }
 
 cite {
-  padding: 6px 14px 7px;
-  font-size: 14px;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 87.5%;
   font-style: normal;
-  color: $linkColor;
-  background-color: $citeBG;
-  border-radius: 1px;
-  &:before {
-    content: '';
-    margin: 6px 8px 0 0;
+  a{
     display: inline-block;
     vertical-align: top;
-    width: 12px;
-    height: 12px;
-    background: url('../img/outer-link.svg') no-repeat;
-  }
-  &:hover{
-    color: $linkColorHover;
+    color: $linkColor;
+    background-color: $spoiler;
+    border-radius: 1px;
+    padding: 6px 14px 7px;
+    &:before {
+      content: '';
+      margin: 4px 8px 0 0;
+      display: inline-block;
+      vertical-align: top;
+      width: 12px;
+      height: 12px;
+      background: url('../img/outer-link.svg') no-repeat;
+    }
+    &:focus{
+      border: none;
+    }
+    &:hover{
+      background-color: $citeBG;
+      a{
+        color: $linkColorHover;
+      }
+      &:before{
+        background: url('../img/outer-link-hover.svg') no-repeat;
+      }
+    }
   }
 }
 
