@@ -49,7 +49,7 @@
       }
     }
     .spoiler-content {
-      padding: 16px 30px 14px;
+      padding: 0 24px;
       height: auto;
       border-color: $spoiler;
     }
@@ -58,10 +58,13 @@
     color: $black;
     .spoiler-head{
       background-color: $lightBg;
+      &:after{
+        color: $linkColorWhite;
+      }
       &:hover {
         background-color: $veryLightBlue;
         &:after {
-          color: $linkColorHover;
+          color: $linkColorWhiteHover;
         }
       }
     }

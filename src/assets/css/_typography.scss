@@ -16,28 +16,27 @@
 body {
   font-family: 'Open Sans', sans-serif;
 }
-
 h1,h2,h3 {
   font-weight: 600;
 }
 h1 {
   font-size: 37px;
-  line-height: 1.406;
+  line-height: 52px;
   letter-spacing: 0.4px;
   margin: 0 0 9px;
 }
 
 h2 {
   font-size: 29px;
-  line-height: 1.38;
+  line-height: 40px;
   letter-spacing: 0.2px;
   margin: 0 0 14px;
 }
 
 h3 {
   font-size: 22px;
-  line-height: 1.5;
-  margin-bottom: 13px;
+  line-height: 32px;
+  margin: 0 0 13px;
 }
 
 p {
@@ -47,6 +46,28 @@ p {
   letter-spacing: -0.2px;
 }
 
+q {
+  &:lang(de),
+  &:lang(de-de) {
+    quotes: "\201E" "\201C" "\201A" "\2018";
+  }
+  &:lang(de-fr) {
+    quotes: "\00BB" "\00AB" "\203A" "\2039";
+  }
+
+  &:lang(de-ch) {
+    quotes: "\00AB" "\00BB" "\2039" "\203A";
+  }
+
+  &:lang(en) {
+    quotes: "\201C" "\201D" "\2018" "\2019";
+  }
+
+  &:lang(fr),
+  &:lang(ru) {
+    quotes: "\00AB\00A0" "\00A0\00BB" "\2039\00A0" "\00A0\203A";
+  }
+}
 a {
   color: $linkColor;
   text-decoration: none;
@@ -67,7 +88,7 @@ strong, b {
 }
 
 blockquote {
-  margin: 12px 0;
+  margin: 13px 0;
   font-size: 20px;
   line-height: 1.6;
   font-style: italic;
@@ -76,18 +97,18 @@ blockquote {
 }
 
 dl {
-  letter-spacing: -0.2px;
-  dt {
-    font-weight: bold;
+  dt,dd{
+    line-height: 1.75;
+    letter-spacing: -0.2px;
     &:before{
       content:'\2014';
     }
   }
+  dt {
+    font-weight: bold;
+  }
   dd {
     margin-left: 0;
-    &:before{
-      content:'\2014';
-    }
   }
 }
 
@@ -121,7 +142,6 @@ ins {
 }
 
 hr {
-  //border: solid 2px #233056;
   height: 2px;
   border: none;
   background: linear-gradient(to right, $white 50%, transparent 50%) repeat-x;
@@ -132,12 +152,13 @@ ul, ol {
   margin-bottom: 24px;
   padding: 0;
   list-style: none;
-  letter-spacing: -0.2px;
   counter-reset: list;
+  letter-spacing: -0.2px;
   li {
     margin: 0 0 11px 30px;
     padding: 0;
     position: relative;
+    line-height: 1.75;
     &:before {
       position: absolute;
       display: inline-block;
@@ -170,9 +191,14 @@ ol {
     }
   }
 }
+p, a, dt, dd, ul, ol{
+  letter-spacing: 0;
+  font-weight: 300;
+}
 
 .white{
   color: $black;
+  font-weight: normal;
   a{
     color: $linkColorWhite;
     &:hover{
@@ -191,5 +217,13 @@ ol {
     &:hover{
       color: $linkColorWhiteHover;
     }
+  }
+  hr{
+    background: linear-gradient(to right, $black 50%, transparent 50%) repeat-x;
+    background-size: 25px 2px;
+  }
+  p, a, dt, dd, ul, ol{
+    letter-spacing: -0.2px;
+    font-weight: normal;
   }
 }
