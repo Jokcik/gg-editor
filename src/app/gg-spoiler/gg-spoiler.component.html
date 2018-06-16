@@ -1,9 +1,9 @@
-<div class="spoiler-block" [class.active]="isActive">
-  <div class="spoiler-head" data-show="+" data-hide="-" (click)="isActive = !isActive">
+<div class="spoiler-block" [class.active]="active">
+  <div class="spoiler-head" tabindex="0" data-show="показать" data-hide="скрыть" (click)="active = !active">
     <ng-content *ngIf="!title" select="gg-spoiler-title"></ng-content>
     {{ title }}
   </div>
-  <div class="spoiler-content">
-    <ng-content></ng-content>
+  <div class="spoiler-content" tabindex="1">
+    <p><ng-content></ng-content></p>
   </div>
 </div>

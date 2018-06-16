@@ -10,8 +10,7 @@
         </address>
       </header>
       <article id="_tl_editor" class="tl_article_content ql-container">
-        <div class="ql-editor" contenteditable="true" dir="auto">
-          <h1 data-placeholder="Title" data-label="Title">h1 Lorem ipsum</h1>
+        <div class="gg-editor gg-colors testing" [innerHTML]="html">
 
         </div>
         <div id="_tl_link_tooltip" class="tl_link_tooltip"></div>
@@ -19,24 +18,26 @@
           <div class="buttons">
             <span class="button_hover"></span>
             <span class="button_group">
-              <button id="_bold_button" [class.active]="editor.activeBold" (click)="bold()"></button>
-              <button id="_italic_button" [class.active]="editor.activeItalic" (click)="italic()"></button>
-              <button id="_link_button" [class.active]="editor.activeLink" (click)="editor.activeLink ? unlink() : addLink()"></button>
+              <button id="_bold_button" [class.active]="editor.bold.active" (click)="bold()"></button>
+              <button id="_italic_button" [class.active]="editor.italic.active" (click)="italic()"></button>
+              <button id="_link_button" [class.active]="editor.link.active" (click)="link()"></button>
             </span>
             <span class="button_group">
-              <button [class.active]="editor.h1.active" [class.disabled]="!editor.h1.active && editor.h1.check" (click)="formatH1()">H1</button>
-              <button id="_header_button" [class.active]="editor.h2.active" (click)="formatH2()"></button>
-              <button id="_subheader_button" [class.active]="editor.h3.active" (click)="formatH3()"></button>
-              <button id="_quote_button" [class.active]="editor.blockquote.active" (click)="formatBlockquote()"></button>
-              <button [class.active]="editor.cite.active" (click)="formatCite()">CIT</button>
-              <button [class.active]="editor.del.active" (click)="formatDel()">DEL</button>
-              <button [class.active]="editor.ins.active" (click)="formatIns()">INS</button>
-              <button [class.active]="editor.dd.active" (click)="formatDd()">DD</button>
-              <button [class.active]="editor.dt.active" (click)="formatDt()">DT</button>
-              <button [class.active]="editor.orderedList.active" (click)="formatOrderedList()">ol</button>
-              <button [class.active]="editor.unorderedList.active" (click)="formatUnorderedList()">ul</button>
-              <button (click)="appendHr()">HR</button>
-            </span>
+              <button [class.active]="editor.h1.active" (click)="header(!editor.h1.active ? 1 : 0)">H1</button>
+              <button id="_header_button" [class.active]="editor.h2.active" (click)="header(!editor.h2.active ? 2 : 0)"></button>
+              <button id="_subheader_button" [class.active]="editor.h3.active" (click)="header(!editor.h3.active ? 3 : 0)"></button>
+              <button id="_quote_button" [class.active]="editor.blockquote.active" (click)="bloquote()"></button>
+              <button [class.active]="editor.cite.active" (click)="cite()">CIT</button>
+              <button (click)="spoiler()">sp</button>
+              <button [class.active]="editor.del.active" (click)="delete()">DEL</button>
+              <button [class.active]="editor.ins.active" (click)="ins()">INS</button>
+              <!--<button [class.active]="editor.dd.active" (click)="formatDd()">DD</button>-->
+              <!--<button [class.active]="editor.dt.active" (click)="formatDt()">DT</button>-->
+              <button [class.active]="editor.orderedList.active" (click)="orderedList()">ol</button>
+              <button [class.active]="editor.unorderedList.active" (click)="unorderedList()">ul</button>
+              <button (click)="divider()">HR</button>
+              <button (click)="img()">img</button>
+    </span>
           </div>
           <div class="prompt">
             <span class="close"></span>
@@ -47,5 +48,11 @@
     </main>
   </div>
 </div>
-
+<div class="testing white">
+  <hr>
+  <hr>
+  <hr>
+  <hr>
+  <h2>НИЖЕ НЕ РЕДАКТОР, А ПРОСТО СТИЛИ!!!!</h2>
+</div>
 <app-test>Loading...</app-test>

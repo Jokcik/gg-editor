@@ -28,7 +28,8 @@
     "quill": "^1.3.6",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26",
-    "document-register-element": "^1.7.2"
+    "document-register-element": "^1.7.2",
+    "quill-delta": "latest"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^6.0.2",

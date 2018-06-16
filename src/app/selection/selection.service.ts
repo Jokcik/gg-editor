@@ -4,7 +4,7 @@ import {backspaceBlock, blocks, Elements} from '../constants';
 import {SelectionEditor} from './selection';
 import {Blockquote, Cite, Dd, Del, Dt, H1, H2, H3, Ins, OrderedList, UnorderedList} from './blocks';
 import {SelectionLogicService} from './selection-logic.service';
-import * as rangy from 'rangy';
+// import * as rangy from 'rangy';
 
 @Injectable({providedIn: 'root'})
 export class SelectionService {
@@ -78,11 +78,11 @@ export class SelectionService {
     return this.activeAll('em', true) || this.activeAll('i', true);
   }
 
-  private isH1(): H1 {
-    const active = this.activeAll('h1');
-    const check = !!this.rootElem.querySelector('h1');
-    return {active, check};
-  }
+  // private isH1(): H1 {
+  //   const active = this.activeAll('h1');
+  //   const check = !!this.rootElem.querySelector('h1');
+  //   return {active, check};
+  // }
 
   private isH2(): H2 {
     const active = this.activeAll('h2');
@@ -138,12 +138,12 @@ export class SelectionService {
     this.onSelect();
   }
 
-  public getRange(): RangyRange {
-    return rangy.getSelection().getRangeAt(0);
+  public getRange(): any {
+    // return rangy.getSelection().getRangeAt(0);
   }
 
-  public getSelection(): RangySelection {
-    return rangy.getSelection();
+  public getSelection(): any {
+    // return rangy.getSelection();
   }
 
   public getRangeContent(): HTMLElement {
@@ -213,7 +213,6 @@ export class SelectionService {
   public wrapTag(element: Element, tagName: string = 'p'): Element {
     const newElem: Element = this.renderer.createElement(tagName);
     newElem.appendChild(element.cloneNode(true));
-    console.log(newElem);
     element.parentElement.replaceChild(newElem, element);
     return newElem;
   }

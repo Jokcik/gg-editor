@@ -6,5 +6,5 @@ import {Component, Input} from '@angular/core';
 })
 export class GGSpoilerComponent {
   @Input() title: string;
-  public isActive: boolean = false;
+  @Input() active: boolean = false;
 }
