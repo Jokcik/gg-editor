@@ -23,13 +23,10 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.editor = editor;
       this.cd.detectChanges();
     });
+
   }
 
   insert() {
-    this.html = `
-          ` + this.html;
-    this.safeHtml = this.sanitaizer.bypassSecurityTrustHtml(this.html);
-    this.quillService.init()
   }
 
   public bold() {
@@ -93,20 +90,21 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit() {
-    this.quillService.init()  }
+    this.quillService.init();
+    const delta = this.quillService.convertHTML(this.html);
+    console.log(delta);
+    // this.quillService.pasteHTML(this.html);
+    this.quillService.setContent(delta);
+  }
 
+  tag: any = '<p>111111123123123123</p>';
   html: any = `
   <h1>h1 Съешь как еще этих вкусных французских булок, дружок-пирожок</h1>
   <h2>h2 Съешь как еще этих вкусных французских булок, дружок-пирожок</h2>
   <h3>h3 Съешь как еще этих вкусных французских булок, дружок-пирожок</h3>
   <p>обычный p с a внутри Lorem <a href="#">this is link</a></p>
-  <!--<gg-spoiler title="Спойлер.Очень длинный заголовок спойлера очень длинный заголовок спойлера очень…" active="true">-->
-      <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore-->
-      <!--magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo-->
-      <!--consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla-->
-      <!--pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est-->
-      <!--laborum.-->
-   <!--</gg-spoiler>-->
+  <gg-spoiler title="Спойлер.Очень длинный заголовок спойлера очень длинный заголовок спойлера очень…" content="${this.tag}"
+        active="true"></gg-spoiler>
 
   <p>strong и b<strong>This is strong</strong> <b>This is b</b></p>
   <p>
@@ -118,7 +116,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     Блэйз уже побывал во множестве боев — и всякий раз задает врагам жару. В этом обзоре мы собрали все, что
     нужно знать об этом новом герое-бойце, и советы, как за него играть.
   </blockquote>
-  <!--<cite><a href="https://battle.net/" target="_blank">battle.net</a></cite>-->
+  <cite><a href="https://battle.net/" target="_blank">battle.net</a></cite>
   <p> <em>em предназначен дедназначя акцентирования текста. Браузеры отображают такой текст курсивным начертанием. </em></p>
   <p>
     <i>

@@ -27,7 +27,7 @@ export function registerQuill(Quill: any) {
     'formats/list': List,
     'formats/list/item': ListItem,
     'formats/cite': Cite,
-    'formats/cite/item': Link,
+    // 'formats/cite/item': CiteItem,
     'formats/q': Q,
-  }, true)
+  })
 }

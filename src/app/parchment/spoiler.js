@@ -1,21 +1,20 @@
+import Delta from 'quill-delta';
 import TextBlot from 'quill/blots/text';
 import Block from 'quill/blots/block';
-import Inline from 'quill/blots/block';
+import Break from 'quill/blots/break';
+import Inline from 'quill/blots/inline';
 import Parchment from 'parchment';
 import Container from 'quill/blots/container';
 
-class Spoiler extends Block {
+class Spoiler extends Container {
   static create(value) {
     console.log('Spoiler create', value);
     let node = super.create();
-    // let node = document.createElement('gg-spoiler');
     node.setAttribute('title', value.title);
     node.setAttribute('active', !!value.active);
     node.setAttribute('contenteditable', false);
     node.setAttribute('show', true);
-    node.setAttribute('content', value.value);
-    console.log(value.value);
-    // node.innerText = value.value;
+    node.setAttribute('content', value.content);
 
     return node;
   }
@@ -53,20 +52,69 @@ class Spoiler extends Block {
   }
 
   insertBefore(blot, ref) {
+    if (blot instanceof Block) {
+      super.insertBefore(blot, ref);
+    } else {
+      let index = ref == null ? this.length() : ref.offset(this);
+      let after = this.split(index);
+      if (!after.parent) { return; };
+      after.parent.insertBefore(blot, after);
+    }
+  }
+
+  replace(target) {
+    if (target.statics.blotName !== this.statics.blotName) {
+      let item = Parchment.create(this.statics.defaultChild);
+      target.moveChildren(item);
+      this.appendChild(item);
+    }
+    super.replace(target);
+  }
+
+  // optimize(context) {
+  //   super.optimize(context);
+  //   let next = this.next;
+  //   if (next != null && next.prev === this &&
+  //     next.statics.blotName === this.statics.blotName &&
+  //     next.domNode.tagName === this.domNode.tagName &&
+  //     next.domNode.getAttribute('data-checked') === this.domNode.getAttribute('data-checked')) {
+  //     next.moveChildren(this);
+  //     next.remove();
+  //   }
+  // }
+
+  // insertBefore(blot, ref) {
   //   if (this.insert) {
   //     console.log(123);
   //     this.insert = false;
   //     super.insertBefore(blot, ref);
   //   }
-  }
+  // }
 
-  // length() {
-  //   console.log(this.scroll.leaf);
-  //   let length = this.domNode.textContent.length - 10;
-  //   if (!this.domNode.textContent.endsWith('\n')) {
-  //     return length + 1;
+  removeChild(child) {
+    this.next.deleteAt(0, this.domNode.querySelector('.spoiler-head').innerHTML.length - 2);
+    this.domNode.remove();
+    super.removeChild(child)
+  }
+  //
+  // delta() {
+  //   let text = this.domNode.textContent;
+  //   if (text.endsWith('\n')) {      // Should always be true
+  //     text = text.slice(0, -1);
   //   }
-  //   return length;
+  //   console.log('telt;', text.split('\n'));
+  //   // return text.split('\n').reduce((delta, frag) => {
+  //   //   return delta.insert(frag).insert('\n', this.formats());
+  //   // }, new Delta());
+  //   return new Delta();
+  // }
+
+  // insertAt(index, value, def) {
+  //   console.log(index, value, def);
+  //   if (def != null) return;
+  //   let [text, offset] = this.descendant(Block, index);
+  //   console.log(text, offset);
+  //   text.insertAt(offset, value);
   // }
 
   spoilerEvent(event, content, allowEnter = true) {
@@ -87,17 +135,21 @@ class Spoiler extends Block {
   }
 
   static value(node) {
+    // node.setAttribute('show', true);
     return {
       title: node.getAttribute('title'),
       active: node.getAttribute('active'),
       content: node.getAttribute('content'),
+      // value: node.querySelector('.spoiler-content').innerHTML,
       // value: node.innerHTML,
-      value: node.innerText,
+      // value: node.innerText,
     };
   }
 }
 Spoiler.blotName = 'spoiler';
 Spoiler.scope = Parchment.Scope.BLOCK_BLOT;
 Spoiler.tagName = 'gg-spoiler';
+Spoiler.defaultChild = 'block';
+Spoiler.allowedChildren = [Block];
 
 export default Spoiler;

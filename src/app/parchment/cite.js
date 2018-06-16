@@ -5,16 +5,15 @@ import Container from 'quill/blots/container';
 // import Inline from 'quill/blots/inline';
 import Link from 'quill/formats/link';
 
-class CiteItem extends Link {
-  // static create(value) {
-  //   console.log(value);
-  // }
+class CiteItem extends Block {
+
 }
 CiteItem.blotName = 'cite-item';
 CiteItem.tagName = 'A';
+CiteItem.className = 'citeItem';
 
 
-class Cite extends Block {
+class Cite extends Container {
   static create(value) {
     const node = super.create();
     node.setAttribute('contenteditable', false);
@@ -24,20 +23,21 @@ class Cite extends Block {
       a.setAttribute('contenteditable', true);
       node.appendChild(a);
     } else {
-      node.innerHTML = value;
+      console.log(node, value);
+      node.appendChild(value);
     }
 
     return node;
   }
 
   static formats(domNode) {
-    return domNode.tagName === Cite.tagName ? domNode.innerHTML : undefined;
+    return domNode.tagName === Cite.tagName ? domNode.querySelector('a') : undefined;
   }
 
   constructor(domNode) {
     super(domNode);
     const listEventHandler = (e) => {
-
+      console.log(5555);
       switch (e.keyCode) {
         case 13:
           console.log(123);
@@ -54,6 +54,48 @@ class Cite extends Block {
       a.setAttribute('contenteditable', true)
     }
     domNode.addEventListener('keydown', listEventHandler);
+  }
+
+  insertBefore(blot, ref) {
+    // if (!blot.domNode) {
+    //   console.log(55555);
+    //   return target.remove();
+    // }
+    if (blot instanceof Link && !this.children.length) {
+      super.insertBefore(blot, ref);
+    } else {
+      let index = ref == null ? this.length() : ref.offset(this);
+      let after = this.split(index);
+      if (!after || !after.parent) { return; }
+      after.parent.insertBefore(blot, after);
+    }
+    console.log(this.next, this.prev);
+  }
+
+  deleteAt(a, l) {
+    super.deleteAt(a, l)
+    this.remove();
+    this.removeChild(a);
+  }
+  
+  insertAt(a) {
+    console.log(a);
+  }
+
+  replace(target) {
+    if (target.statics.blotName !== this.statics.blotName) {
+      let item = Parchment.create(this.statics.defaultChild);
+      target.moveChildren(item);
+      this.appendChild(item);
+    }
+    super.replace(target);
+  }
+
+  removeChild(child) {
+    console.log(123);
+    // this.next.deleteAt(0, this.domNode.querySelector('.spoiler-head').innerHTML.length - 2);
+    this.domNode.remove();
+    super.removeChild(child)
   }
 
   // remove() {
@@ -142,9 +184,9 @@ class Cite extends Block {
   //   }
   // }
 
-  insertBefore(blot, ref) {
+  // insertBefore(blot, ref) {
     // super.insertBefore(blot, ref)
-  }
+  // }
 }
 Cite.blotName = 'cite';
 Cite.scope = Parchment.Scope.BLOCK_BLOT;

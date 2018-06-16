@@ -9,12 +9,13 @@ import {CommandService} from './command';
 import {SelectionLogicService} from './selection/selection-logic.service';
 import { TestComponent } from './test/test.component';
 import {createCustomElement} from '@angular/elements';
-import {GGSpoilerComponent} from './gg-spoiler/gg-spoiler.component';
+import {GGSpoilerComponent} from './gg-spoiler';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
+    GGSpoilerComponent
   ],
   imports: [
     BrowserModule,

@@ -37,8 +37,21 @@ export class QuillService {
     return document.querySelector('.' + Elements.ROOT_ELEMENT);
   }
 
+  public setContent(delta) {
+    this._quill.setContents(delta, 'api');
+  }
+
+  public pasteHTML(html: string) {
+    this._quill.clipboard.dangerouslyPasteHTML(html, 'user')
+  }
+
+  public convertHTML(html) {
+    return this._quill.clipboard.convert(`<div>${html}</div>`);
+  }
+
   public init() {
     this._quill = new Quill(this.rootElem);
+    // this._quill.root.
     this._quill.on('editor-change', () => this.onSelect());
     this._renderer = this.rendererFactory.createRenderer(this.rootElem, null);
   }
