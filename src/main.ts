@@ -9,8 +9,13 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+async function func() {
+  await platformBrowserDynamic().bootstrapModule(GgSpoilerModule)
+    .catch(err => console.log(err));
 
-platformBrowserDynamic().bootstrapModule(GgSpoilerModule)
-  .catch(err => console.log(err));
+  platformBrowserDynamic().bootstrapModule(AppModule)
+    .catch(err => console.log(err));
+}
+
+
+func();

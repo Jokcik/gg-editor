@@ -1,9 +1,18 @@
-<div class="spoiler-block" [class.active]="active">
+<div class="spoiler-content" *ngIf="!show"><ng-content></ng-content></div>
+<!--<div class="spoiler-content" *ngIf="!show">123</div>-->
+
+<div class="spoiler-block" [class.active]="active" *ngIf="show">
   <div class="spoiler-head" tabindex="0" data-show="показать" data-hide="скрыть" (click)="active = !active">
-    <ng-content *ngIf="!title" select="gg-spoiler-title"></ng-content>
+    <!--<ng-content *ngIf="!title" select="gg-spoiler-title"></ng-content>-->
     {{ title }}
   </div>
-  <div class="spoiler-content" tabindex="1">
-    <p><ng-content></ng-content></p>
-  </div>
+  <!--<ng-container *ngIf="!content">-->
+    <!--<div class="spoiler-content" tabindex="1">-->
+      <!--<p><ng-content></ng-content></p>-->
+    <!--</div>-->
+  <!--</ng-container>-->
+  <ng-container *ngIf="content">
+    <div class="spoiler-content" tabindex="1" [innerHTML]="content"></div>
+  </ng-container>
+
 </div>

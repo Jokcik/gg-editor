@@ -20,7 +20,7 @@ class Cite extends Block {
     node.setAttribute('contenteditable', false);
     if (value.url) {
       const a = CiteItem.create(value.url);
-      a.innerHTML = value;
+      a.innerHTML = value.url;
       a.setAttribute('contenteditable', true);
       node.appendChild(a);
     } else {
@@ -125,13 +125,13 @@ class Cite extends Block {
   //   });
   // }
 
-  length() {
-    let length = this.domNode.textContent.length;
-    if (!this.domNode.textContent.endsWith('\n')) {
-      return length + 1;
-    }
-    return length;
-  }
+  // length() {
+  //   let length = this.domNode.textContent.length;
+  //   if (!this.domNode.textContent.endsWith('\n')) {
+  //     return length + 1;
+  //   }
+  //   return length;
+  // }
 
   // newlineIndex(searchIndex, reverse = false) {
   //   if (!reverse) {
