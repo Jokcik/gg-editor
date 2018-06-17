@@ -18,7 +18,7 @@ class Cite extends Container {
     const node = super.create();
     node.setAttribute('contenteditable', false);
     if (value.url) {
-      const a = CiteItem.create(value.url);
+      const a = Link.create(value.url);
       a.innerHTML = value.url;
       a.setAttribute('contenteditable', true);
       node.appendChild(a);
@@ -57,10 +57,6 @@ class Cite extends Container {
   }
 
   insertBefore(blot, ref) {
-    // if (!blot.domNode) {
-    //   console.log(55555);
-    //   return target.remove();
-    // }
     if (blot instanceof Link && !this.children.length) {
       super.insertBefore(blot, ref);
     } else {
