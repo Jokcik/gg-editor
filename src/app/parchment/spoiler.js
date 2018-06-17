@@ -8,7 +8,6 @@ import Container from 'quill/blots/container';
 
 class Spoiler extends Container {
   static create(value) {
-    console.log('Spoiler create', value);
     let node = super.create();
     node.setAttribute('title', value.title);
     node.setAttribute('active', !!value.active);
@@ -24,26 +23,13 @@ class Spoiler extends Container {
   }
 
   constructor(domNode) {
-    console.log('constructor')
     super(domNode);
-    this.insert = true;
 
     setTimeout(() => {
       this.spoilerElement(domNode, '.spoiler-content');
       this.spoilerElement(domNode, '.spoiler-head', false);
     });
   }
-
-  // replace(target) {
-  //   console.log(target);
-  //   if (target.statics.blotName !== this.statics.blotName) {
-  //     this.remove();
-  //     // let item = Parchment.create(this.statics.defaultChild);
-  //     // target.moveChildren(item);
-  //     // this.appendChild(item);
-  //   }
-  //   super.replace(target);
-  // }
 
   spoilerElement(domNode, selector, allowEnter = true) {
     const content = domNode.querySelector(selector);
@@ -71,54 +57,13 @@ class Spoiler extends Container {
     super.replace(target);
   }
 
-  // optimize(context) {
-  //   super.optimize(context);
-  //   let next = this.next;
-  //   if (next != null && next.prev === this &&
-  //     next.statics.blotName === this.statics.blotName &&
-  //     next.domNode.tagName === this.domNode.tagName &&
-  //     next.domNode.getAttribute('data-checked') === this.domNode.getAttribute('data-checked')) {
-  //     next.moveChildren(this);
-  //     next.remove();
-  //   }
-  // }
-
-  // insertBefore(blot, ref) {
-  //   if (this.insert) {
-  //     console.log(123);
-  //     this.insert = false;
-  //     super.insertBefore(blot, ref);
-  //   }
-  // }
-
   removeChild(child) {
     this.next.deleteAt(0, this.domNode.querySelector('.spoiler-head').innerHTML.length - 2);
     this.domNode.remove();
     super.removeChild(child)
   }
-  //
-  // delta() {
-  //   let text = this.domNode.textContent;
-  //   if (text.endsWith('\n')) {      // Should always be true
-  //     text = text.slice(0, -1);
-  //   }
-  //   console.log('telt;', text.split('\n'));
-  //   // return text.split('\n').reduce((delta, frag) => {
-  //   //   return delta.insert(frag).insert('\n', this.formats());
-  //   // }, new Delta());
-  //   return new Delta();
-  // }
-
-  // insertAt(index, value, def) {
-  //   console.log(index, value, def);
-  //   if (def != null) return;
-  //   let [text, offset] = this.descendant(Block, index);
-  //   console.log(text, offset);
-  //   text.insertAt(offset, value);
-  // }
 
   spoilerEvent(event, content, allowEnter = true) {
-    console.log('spoilerEvent');
     switch (event.keyCode ) {
       case 13:
         if (!allowEnter) {

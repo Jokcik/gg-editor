@@ -10,7 +10,8 @@ import Ins from '../parchment/ins';
 import Divider from '../parchment/divider';
 import Spoiler from '../parchment/spoiler';
 import Q from '../parchment/q';
-import Cite, {CiteItem} from '../parchment/cite';
+import Cite from '../parchment/cite';
+import Dl, {DlItem} from '../parchment/dl';
 
 export function registerQuill(Quill: any) {
   Quill.register({
@@ -27,7 +28,9 @@ export function registerQuill(Quill: any) {
     'formats/list': List,
     'formats/list/item': ListItem,
     'formats/cite': Cite,
-    // 'formats/cite/item': CiteItem,
     'formats/q': Q,
+    'formats/dl': Dl,
+    'formats/dl/item1': DlItem,
+    // 'formats/dl/item2': DlItem2,
   })
 }
