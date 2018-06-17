@@ -38,17 +38,19 @@
     .spoiler-block.active .spoiler-head:after {
       content: attr(data-hide); }
   .spoiler-block.active .spoiler-content {
-    padding: 16px 30px 14px;
+    padding: 0 24px;
     height: auto;
     border-color: #252e41; }
   .spoiler-block.white {
     color: #000; }
     .spoiler-block.white .spoiler-head {
       background-color: #e4e8ee; }
+      .spoiler-block.white .spoiler-head:after {
+        color: #006aff; }
       .spoiler-block.white .spoiler-head:hover {
         background-color: #dfecff; }
         .spoiler-block.white .spoiler-head:hover:after {
-          color: #4f98ff; }
+          color: #589dff; }
     .spoiler-block.white .spoiler-content {
       border-color: #e4e8ee; }
 
@@ -65,33 +67,45 @@
   color: #fff; }
 
 body {
-  font-family: 'Open Sans', sans-serif; }
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100%; }
 
 h1, h2, h3 {
   font-weight: 600; }
 
 h1 {
-  font-size: 37px;
-  line-height: 1.406;
+  font-size: 231.25%;
+  line-height: 52px;
   letter-spacing: 0.4px;
   margin: 0 0 9px; }
 
 h2 {
-  font-size: 29px;
-  line-height: 1.38;
+  font-size: 181.25%;
+  line-height: 40px;
   letter-spacing: 0.2px;
   margin: 0 0 14px; }
 
 h3 {
-  font-size: 22px;
-  line-height: 1.5;
-  margin-bottom: 13px; }
+  font-size: 137.5%;
+  line-height: 32px;
+  margin: 0 0 13px; }
 
 p {
   margin: 12px 0;
-  font-size: 16px;
+  font-size: 100%;
   line-height: 1.75;
   letter-spacing: -0.2px; }
+
+q:lang(de), q:lang(de-de) {
+  quotes: "\201E" "\201C" "\201A" "\2018"; }
+q:lang(de-fr) {
+  quotes: "\00BB" "\00AB" "\203A" "\2039"; }
+q:lang(de-ch) {
+  quotes: "\00AB" "\00BB" "\2039" "\203A"; }
+q:lang(en) {
+  quotes: "\201C" "\201D" "\2018" "\2019"; }
+q:lang(fr), q:lang(ru) {
+  quotes: "\00AB\00A0" "\00A0\00BB" "\2039\00A0" "\00A0\203A"; }
 
 a {
   color: #73adff;
@@ -108,41 +122,51 @@ strong, b {
   font-weight: bold; }
 
 blockquote {
-  margin: 12px 0;
-  font-size: 20px;
+  margin: 13px 0;
+  font-size: 125%;
   line-height: 1.6;
   font-style: italic;
   color: #dfecff;
   letter-spacing: 0; }
 
-dl {
+dl dt, dl dd {
+  line-height: 1.75;
   letter-spacing: -0.2px; }
-  dl dt {
-    font-weight: bold; }
-    dl dt:before {
-      content: '\2014'; }
-  dl dd {
-    margin-left: 0; }
-    dl dd:before {
-      content: '\2014'; }
+  dl dt:before, dl dd:before {
+    content: '\2014'; }
+dl dt {
+  font-weight: bold; }
+dl dd {
+  margin-left: 0; }
 
 cite {
-  padding: 6px 14px 7px;
-  font-size: 14px;
-  font-style: normal;
-  color: #73adff;
-  background-color: #2b3553;
-  border-radius: 1px; }
-  cite:before {
-    content: '';
-    margin: 6px 8px 0 0;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 87.5%;
+  font-style: normal; }
+  cite a {
     display: inline-block;
     vertical-align: top;
-    width: 12px;
-    height: 12px;
-    background: url("../img/outer-link.svg") no-repeat; }
-  cite:hover {
-    color: #4f98ff; }
+    color: #73adff;
+    background-color: #252e41;
+    border-radius: 1px;
+    padding: 6px 14px 7px; }
+    cite a:before {
+      content: '';
+      margin: 4px 8px 0 0;
+      display: inline-block;
+      vertical-align: top;
+      width: 12px;
+      height: 12px;
+      background: url("../img/outer-link.svg") no-repeat; }
+    cite a:focus {
+      border: none; }
+    cite a:hover {
+      background-color: #2b3553; }
+      cite a:hover a {
+        color: #4f98ff; }
+      cite a:hover:before {
+        background: url("../img/outer-link-hover.svg") no-repeat; }
 
 del {
   color: #fe4b4b; }
@@ -160,12 +184,13 @@ ul, ol {
   margin-bottom: 24px;
   padding: 0;
   list-style: none;
-  letter-spacing: -0.2px;
-  counter-reset: list; }
+  counter-reset: list;
+  letter-spacing: -0.2px; }
   ul li, ol li {
     margin: 0 0 11px 30px;
     padding: 0;
-    position: relative; }
+    position: relative;
+    line-height: 1.75; }
     ul li:before, ol li:before {
       position: absolute;
       display: inline-block;
@@ -186,8 +211,13 @@ ol li:before {
   counter-increment: list;
   content: counter(list) "."; }
 
+p, a, dt, dd, ul, ol {
+  letter-spacing: 0;
+  font-weight: 300; }
+
 .white {
-  color: #000; }
+  color: #000;
+  font-weight: normal; }
   .white a {
     color: #006aff; }
     .white a:hover {
@@ -201,6 +231,12 @@ ol li:before {
       background: url("../img/outer-link-white.svg") no-repeat; }
     .white cite:hover {
       color: #589dff; }
+  .white hr {
+    background: linear-gradient(to right, #000 50%, transparent 50%) repeat-x;
+    background-size: 25px 2px; }
+  .white p, .white a, .white dt, .white dd, .white ul, .white ol {
+    letter-spacing: -0.2px;
+    font-weight: normal; }
 
 .buttons button {
   color: white;
