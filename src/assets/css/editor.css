@@ -68,31 +68,30 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 100%; }
+  font-size: 16px; }
 
 h1, h2, h3 {
   font-weight: 600; }
 
 h1 {
   font-size: 231.25%;
-  line-height: 52px;
+  line-height: 1.41;
   letter-spacing: 0.4px;
   margin: 0 0 9px; }
 
 h2 {
-  font-size: 181.25%;
-  line-height: 40px;
+  font-size: 175%;
+  line-height: 1.43;
   letter-spacing: 0.2px;
   margin: 0 0 14px; }
 
 h3 {
   font-size: 137.5%;
-  line-height: 32px;
+  line-height: 1.46;
   margin: 0 0 13px; }
 
 p {
   margin: 12px 0;
-  font-size: 100%;
   line-height: 1.75;
   letter-spacing: -0.2px; }
 
@@ -110,7 +109,8 @@ q:lang(fr), q:lang(ru) {
 a {
   color: #73adff;
   text-decoration: none;
-  letter-spacing: -0.2px; }
+  letter-spacing: -0.2px;
+  border-bottom: 1px solid transparent; }
   a:hover {
     color: #4f98ff; }
   a:focus {
@@ -222,14 +222,18 @@ p, a, dt, dd, ul, ol {
     color: #006aff; }
     .white a:hover {
       color: #589dff; }
+    .white a:active {
+      color: #fe4b4b; }
+    .white a:focus {
+      border-bottom: 1px solid rgba(0, 106, 255, 0.25); }
   .white blockquote {
     color: #233056; }
-  .white cite {
+  .white cite a {
     background-color: #e4e8ee;
     color: #006aff; }
-    .white cite:before {
+    .white cite a:before {
       background: url("../img/outer-link-white.svg") no-repeat; }
-    .white cite:hover {
+    .white cite a:hover {
       color: #589dff; }
   .white hr {
     background: linear-gradient(to right, #000 50%, transparent 50%) repeat-x;

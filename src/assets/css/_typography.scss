@@ -15,34 +15,34 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 100%;
+  font-size: 16px;
+  //font-size: 100%;
 }
 h1,h2,h3 {
   font-weight: 600;
 }
 h1 {
   font-size: 231.25%;
-  line-height: 52px;
+  line-height: 1.41;
   letter-spacing: 0.4px;
   margin: 0 0 9px;
 }
 
 h2 {
-  font-size: 181.25%;
-  line-height: 40px;
+  font-size: 175%;
+  line-height: 1.43;
   letter-spacing: 0.2px;
   margin: 0 0 14px;
 }
 
 h3 {
   font-size: 137.5%;
-  line-height: 32px;
+  line-height: 1.46;
   margin: 0 0 13px;
 }
 
 p {
   margin: 12px 0;
-  font-size: 100%;
   line-height: 1.75;
   letter-spacing: -0.2px;
 }
@@ -73,6 +73,7 @@ a {
   color: $linkColor;
   text-decoration: none;
   letter-spacing: -0.2px;
+  border-bottom: 1px solid transparent;
   &:hover {
     color: $linkColorHover;
   }
@@ -215,23 +216,31 @@ p, a, dt, dd, ul, ol{
 .white{
   color: $black;
   font-weight: normal;
-  a{
+  a {
     color: $linkColorWhite;
-    &:hover{
+    &:hover {
       color: $linkColorWhiteHover;
+    }
+    &:active {
+      color: $red;
+    }
+    &:focus {
+      border-bottom: 1px solid rgba(0, 106, 255, 0.25);
     }
   }
   blockquote{
     color: $mainColor;
   }
   cite{
-    background-color: $lightBg;
-    color: $linkColorWhite;
-    &:before {
-      background: url('../img/outer-link-white.svg') no-repeat;
-    }
-    &:hover{
-      color: $linkColorWhiteHover;
+    a{
+      background-color: $lightBg;
+      color: $linkColorWhite;
+      &:before {
+        background: url('../img/outer-link-white.svg') no-repeat;
+      }
+      &:hover{
+        color: $linkColorWhiteHover;
+      }
     }
   }
   hr{
