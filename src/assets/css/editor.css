@@ -75,19 +75,19 @@ h1, h2, h3 {
 
 h1 {
   font-size: 231.25%;
-  line-height: 1.41;
+  line-height: 141%;
   letter-spacing: 0.4px;
   margin: 0 0 9px; }
 
 h2 {
   font-size: 175%;
-  line-height: 1.43;
+  line-height: 143%;
   letter-spacing: 0.2px;
   margin: 0 0 14px; }
 
 h3 {
   font-size: 137.5%;
-  line-height: 1.46;
+  line-height: 146%;
   margin: 0 0 13px; }
 
 p {
@@ -114,9 +114,11 @@ a {
   a:hover {
     color: #4f98ff; }
   a:focus {
+    outline: none;
     border-bottom: 1px solid rgba(115, 173, 255, 0.25); }
   a:active {
-    color: #fe4b4b; }
+    color: #fe4b4b;
+    border-color: transparent; }
 
 strong, b {
   font-weight: bold; }
@@ -135,7 +137,8 @@ dl dt, dl dd {
   dl dt:before, dl dd:before {
     content: '\2014'; }
 dl dt {
-  font-weight: bold; }
+  font-weight: bold;
+  margin-bottom: 12px; }
 dl dd {
   margin-left: 0; }
 
@@ -150,7 +153,8 @@ cite {
     color: #73adff;
     background-color: #252e41;
     border-radius: 1px;
-    padding: 6px 14px 7px; }
+    padding: 6px 14px;
+    border: none; }
     cite a:before {
       content: '';
       margin: 4px 8px 0 0;
@@ -159,14 +163,13 @@ cite {
       width: 12px;
       height: 12px;
       background: url("../img/outer-link.svg") no-repeat; }
-    cite a:focus {
-      border: none; }
+    cite a:focus, cite a:active {
+      border: none;
+      color: #4f98ff; }
     cite a:hover {
       background-color: #2b3553; }
       cite a:hover a {
         color: #4f98ff; }
-      cite a:hover:before {
-        background: url("../img/outer-link-hover.svg") no-repeat; }
 
 del {
   color: #fe4b4b; }
@@ -230,15 +233,22 @@ p, a, dt, dd, ul, ol {
     color: #233056; }
   .white cite a {
     background-color: #e4e8ee;
-    color: #006aff; }
+    color: #006aff;
+    border: none; }
     .white cite a:before {
       background: url("../img/outer-link-white.svg") no-repeat; }
+    .white cite a:focus, .white cite a:active {
+      border: none;
+      color: #4f98ff; }
     .white cite a:hover {
-      color: #589dff; }
+      color: #589dff;
+      background-color: #dfecff; }
+      .white cite a:hover:before {
+        background: url("../img/outer-link-white.svg") no-repeat; }
   .white hr {
     background: linear-gradient(to right, #000 50%, transparent 50%) repeat-x;
     background-size: 25px 2px; }
-  .white p, .white a, .white dt, .white dd, .white ul, .white ol {
+  .white p, .white a, .white dd, .white ul, .white ol {
     letter-spacing: -0.2px;
     font-weight: normal; }
 
