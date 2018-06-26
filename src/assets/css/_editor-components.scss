@@ -1,0 +1,246 @@
+*{
+  box-sizing: border-box;
+}
+.text-center {
+  text-align: center;
+}
+
+input[type="text"], textarea, input[type="tel"], input[type="password"], input[type="email"], input[type="number"], .textarea {
+  display: block;
+  color: $white;
+  width: 100%;
+  font-size: 14px;
+  line-height: 19px;
+  padding: 7px 11px;
+  border: 1px solid transparent;
+  background-color: $black;
+  border-radius: 2px;
+  &::placeholder {
+    color: #565a64;
+  }
+  &:focus, &.focused {
+    border: 1px solid $accent;
+    outline: none;
+    box-shadow: inset 0 0 6px 0 rgba(82, 112, 156, 0.3);
+  }
+  &:invalid, &.error {
+    border: 1px solid $red;
+    box-shadow: inset 0 0 6px 0 rgba(254, 110, 110, 0.3);
+  }
+  &.disabled,&:disabled{
+    cursor: default;
+    pointer-events: none;
+    color: $gray;
+    border-color: $gray;
+    background-color: transparent;
+    box-shadow: inset 0 0 0 1px $gray;
+  }
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  vertical-align: top;
+  color: $white;
+  font-size: 14px;
+  line-height: 19px;
+  border: none;
+  padding: 8px 16px;
+  outline: none !important;
+  cursor: pointer;
+  border-radius: 2px;
+  user-select: none;
+  text-decoration: none;
+  &:hover {
+    color: $white;
+  }
+  &.btn-blue {
+    background-color: #3a6097;
+    &:hover {
+      background-color: #4d73ac;
+    }
+    &:active {
+      background-color: #3864a4;
+    }
+    &.light {
+      background-color: #5d94e2;
+      &:hover {
+        background-color: #7fa5dd;
+      }
+      &:active {
+        background-color: #4c8dea;
+      }
+    }
+  }
+  &.btn-gray {
+    background-color: #607695;
+    &:hover {
+      background-color: #7b8da5;
+    }
+    &:active {
+      background-color: #5b79a4;
+    }
+    &.light {
+      background-color: #8a9db7;
+      &:hover {
+        background-color: #93a9c4;
+      }
+      &:active {
+        background-color: #8a9db7;
+      }
+    }
+  }
+  &.btn-pending {
+    border: solid 2px #3a9749;
+    padding: 6px 16px;
+  }
+  &.btn-plus{
+    background-color: #a74ac6;
+    &:hover {
+      background-color: #E04BFF;
+    }
+    &:active {
+      background-color: #BF4CDE;
+    }
+  }
+  &.disabled {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &.btn-blue, &.btn-gray, &.btn-green, &.btn-red {
+    &.disabled {
+      background-color: #656871;
+      color: #b2b3b8;
+      &.light {
+        background-color: #8f929b;
+        color: #c7c8cd;
+      }
+    }
+  }
+
+  &.loading {
+    color: transparent;
+    width: inherit;
+    height: inherit;
+    min-width: 54px;
+    //background-image: url(/images/chat/ajax_loading.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &.wide{
+    display: block;
+    text-align: center;
+  }
+}
+
+.system-message {
+  display: inline-block;
+  vertical-align: top;
+  padding: 7px 14px 7px 12px;
+  margin-bottom: 10px;
+  color: $white;
+  font-size: 14px;
+  line-height: 1.5em;
+  cursor: default;
+  &:empty{
+    padding: 0;
+    margin: 0;
+  }
+  &.error {
+    border-left: 4px solid $red;
+    background-color: #8f3d50;
+    &.smooth-error {
+      animation: fadeIn 3s;
+      animation-fill-mode: forwards;
+    }
+  }
+  &.system {
+    border-left: 4px solid #7e8fc2;
+    background-color: $accent;
+  }
+  &.success {
+    border-left: 4px solid $green;
+    background-color: #41765f;
+  }
+  &.warning {
+    border-left: 4px solid #e67919;
+    background-color: #b1611b;
+  }
+  &.smooth {
+    animation: fadeIn 3s;
+    animation-fill-mode: forwards;
+  }
+}
+
+.spoiler-block {
+  position: relative;
+  margin: 0 0 16px;
+  color: $white;
+  box-sizing: border-box;
+  .spoiler-head {
+    position: relative;
+    padding: 7px 98px 6px 14px;
+    font-size: 14px;
+    line-height: normal;
+    min-height: 32px;
+    background-color: $spoiler;
+    cursor: pointer;
+    border-radius: 2px;
+    user-select: none;
+    &:after {
+      content: attr(data-show);
+      position: absolute;
+      top: 7px;
+      right: 16px;
+      color: $linkColor;
+    }
+    &:hover {
+      background-color: $spoilerHover;
+      &:after {
+        color: $linkColorHover;
+      }
+    }
+  }
+  .spoiler-content {
+    margin-top: -2px;
+    border: 2px solid transparent;
+    border-top: none;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.35s ease-in-out;
+  }
+  &.active {
+    .spoiler-head {
+      border-radius: 2px 2px 0 0;
+      &:after {
+        content: attr(data-hide);
+      }
+    }
+    .spoiler-content {
+      padding: 0 24px;
+      height: auto;
+      border-color: $spoiler;
+    }
+  }
+  &.white{
+    color: $black;
+    .spoiler-head{
+      background-color: $lightBg;
+      &:after{
+        color: $linkColorWhite;
+      }
+      &:hover {
+        background-color: $veryLightBlue;
+        &:after {
+          color: $linkColorWhiteHover;
+        }
+      }
+    }
+    .spoiler-content{
+      border-color: $lightBg;
+    }
+  }
+}

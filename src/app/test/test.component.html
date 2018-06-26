@@ -1,5 +1,41 @@
 <div class="testing gg-colors" [class.white]="toggler">
   <div (click)="toggler = !toggler" style="cursor: pointer; display: inline-block;"><h2>Нажми чтобы поменять цвет</h2></div>
+  <div class="upload-block-wrap" *ngIf="toggleImageUpload"> <!--  -->
+    <div class="upload-block">
+      <div class="icon-cancel-icon-editor" (click)="toggleImageUpload = false;"></div>
+      <div class="text-center">
+        <div class="upload-img-block">
+          <img class="top" src="../../assets/img/drag-n-drop-icon.png" alt="">
+          <img src="../../assets/img/big-cloud-icon.svg" alt="">
+        </div>
+      </div>
+      <div class="input-block">
+        <label for="upload-image" class="btn btn-blue">Выбрать...</label>
+        <span>изображение с диска или перенести сюда</span>
+        <input id="upload-image" type="file">
+      </div>
+      <input type="text" placeholder="Вставить ссылку на изображение">
+    </div>
+  </div>
+  <div class="comment-editor-wrap">
+    <div class="comment-editor">
+      <div class="avatar-block"></div>
+      <div class="comment-block">
+        <div class="textarea-block">
+          <div class="textarea" contenteditable="true"></div>
+          <div class="smile-panel" *ngIf="toggleSmiles"></div>
+          <div class="controls-block">
+            <div class="icon icon-smile-icon-editor" [class.active]="toggleSmiles " (click)="toggleSmiles = !toggleSmiles"></div>
+            <div class="icon icon-image-icon-editor" [class.active]="toggleImageUpload" (click)="toggleImageUpload = !toggleImageUpload"></div>
+          </div>
+        </div>
+        <div class="btn-block">
+          <a href="#" class="btn btn-gray">Отмена</a>
+          <a href="" class="btn btn-blue">Отправить</a>
+        </div>
+      </div>
+    </div>
+  </div>
   <h1>h1 Съешь как еще этих вкусных французских булок, дружок-пирожок</h1>
   <h2>h2 Съешь как еще этих вкусных французских булок, дружок-пирожок</h2>
   <h3>h3 Съешь как еще этих вкусных французских булок, дружок-пирожок</h3>

@@ -5,8 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './test.component.html'
 })
 export class TestComponent implements OnInit {
-  public toggler: boolean = false;
-  public togglerSpoiler: boolean = false;
+  public toggler = false;
+  public togglerSpoiler = false;
+  public toggleSmiles = false;
+  public toggleImageUpload = false;
   constructor() { }
 
   ngOnInit() {

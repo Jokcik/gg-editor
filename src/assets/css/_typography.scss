@@ -42,12 +42,13 @@ h3 {
 }
 
 p {
-  margin: 12px 0;
+  margin: 16px 0;
   line-height: 1.75;
   letter-spacing: -0.2px;
 }
 
 q {
+  margin: 16px 0;
   &:lang(de),
   &:lang(de-de) {
     quotes: "\201E" "\201C" "\201A" "\2018";
@@ -92,7 +93,7 @@ strong, b {
 }
 
 blockquote {
-  margin: 13px 0;
+  margin: 16px 0;
   font-size: 125%;
   line-height: 1.6;
   font-style: italic;
@@ -110,7 +111,7 @@ dl {
   }
   dt {
     font-weight: bold;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
   dd {
     margin-left: 0;
@@ -150,10 +151,6 @@ cite {
       }
     }
   }
-}
-
-del {
-  color: $red;
 }
 
 ins {
