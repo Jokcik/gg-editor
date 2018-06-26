@@ -19,13 +19,17 @@
           <div class="buttons">
             <span class="button_hover"></span>
             <span class="button_group">
-              <button id="_bold_button" [class.active]="editor.bold.active" (click)="bold()"></button>
+              <button id="_bold_button" [class.active]="editor.bold.active" (click)="bold()">
+                <span class="icon icon-bold-icon-editor"></span>
+              </button>
               <button id="_italic_button" [class.active]="editor.italic.active" (click)="italic()"></button>
               <button id="_link_button" [class.active]="editor.link.active" (click)="link()"></button>
             </span>
             <span class="button_group">
               <button [class.active]="editor.h1.active" (click)="header(!editor.h1.active ? 1 : 0)">H1</button>
-              <button id="_header_button" [class.active]="editor.h2.active" (click)="header(!editor.h2.active ? 2 : 0)"></button>
+              <button id="_header_button" [class.active]="editor.h2.active" (click)="header(!editor.h2.active ? 2 : 0)">
+                <span class="icon icon-h2-icon-editor"></span>
+              </button>
               <button id="_subheader_button" [class.active]="editor.h3.active" (click)="header(!editor.h3.active ? 3 : 0)"></button>
               <button id="_quote_button" [class.active]="editor.blockquote.active" (click)="bloquote()"></button>
               <button [class.active]="editor.cite.active" (click)="cite()">CIT</button>
