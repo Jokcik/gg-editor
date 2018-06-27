@@ -25,8 +25,12 @@
           <div class="textarea" contenteditable="true"></div>
           <div class="smile-panel" *ngIf="toggleSmiles"></div>
           <div class="controls-block">
-            <div class="icon icon-smile-icon-editor" [class.active]="toggleSmiles " (click)="toggleSmiles = !toggleSmiles"></div>
-            <div class="icon icon-image-icon-editor" [class.active]="toggleImageUpload" (click)="toggleImageUpload = !toggleImageUpload"></div>
+            <div class="icon icon-smile-icon-editor" [class.active]="toggleSmiles " (click)="toggleSmiles = !toggleSmiles">
+              <div class="tip">Вставить смайлик</div>
+            </div>
+            <div class="icon icon-image-icon-editor" [class.active]="toggleImageUpload" (click)="toggleImageUpload = !toggleImageUpload">
+              <div class="tip">Вставить изображение</div>
+            </div>
           </div>
         </div>
         <div class="btn-block">

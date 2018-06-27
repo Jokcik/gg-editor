@@ -42,6 +42,7 @@
         right: 8px;
         width: 24px;
         .icon {
+          position: relative;
           margin-bottom: 2px;
           color: $white;
           font-size: 26px;
@@ -49,6 +50,9 @@
           cursor: pointer;
           &:hover {
             background-color: #374b72;
+            .tip{
+              display: block;
+            }
           }
           &.active {
             background-color: $accent;
