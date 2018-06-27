@@ -589,7 +589,7 @@ textarea {
   left: 0;
   top: 0;
   background-color: #52709c;
-  border-radius: 6px;
+  border-radius: 2px;
   padding: 4px;
   line-height: 0;
   white-space: nowrap;
@@ -752,18 +752,6 @@ textarea {
   .buttons button:after, .buttons button:before, .tl_blocks .buttons button {
     background-image: url(/src/images/icons_2x.png?1);
     background-size: 40px 487px; } }
-.buttons #_italic_button:before {
-  background-position: -8px -70px; }
-
-.buttons #_italic_button:after {
-  background-position: -8px -102px; }
-
-.buttons #_link_button:before {
-  background-position: -8px -134px; }
-
-.buttons #_link_button:after {
-  background-position: -8px -166px; }
-
 .buttons #_subheader_button:before {
   background-position: -8px -262px; }
 

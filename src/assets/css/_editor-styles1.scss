@@ -204,7 +204,7 @@ textarea {
   left: 0;
   top: 0;
   background-color: #52709c;
-  border-radius: 6px;
+  border-radius: 2px;
   padding: 4px;
   line-height: 0;
   white-space: nowrap;
@@ -419,21 +419,21 @@ textarea {
 //  background-position: -8px -38px
 //}
 
-.buttons #_italic_button:before {
-  background-position: -8px -70px
-}
+//.buttons #_italic_button:before {
+//  background-position: -8px -70px
+//}
+//
+//.buttons #_italic_button:after {
+//  background-position: -8px -102px
+//}
 
-.buttons #_italic_button:after {
-  background-position: -8px -102px
-}
-
-.buttons #_link_button:before {
-  background-position: -8px -134px
-}
-
-.buttons #_link_button:after {
-  background-position: -8px -166px
-}
+//.buttons #_link_button:before {
+//  background-position: -8px -134px
+//}
+//
+//.buttons #_link_button:after {
+//  background-position: -8px -166px
+//}
 
 //.buttons #_header_button:before {
 //  background-position: -8px -198px

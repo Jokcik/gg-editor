@@ -19,23 +19,55 @@
           <div class="buttons">
             <span class="button_hover"></span>
             <span class="button_group">
-              <button id="_bold_button" [class.active]="editor.bold.active" (click)="bold()">
-                <span class="icon icon-bold-icon-editor"></span>
-              </button>
-              <button id="_italic_button" [class.active]="editor.italic.active" (click)="italic()"></button>
-              <button id="_link_button" [class.active]="editor.link.active" (click)="link()"></button>
-            </span>
-            <span class="button_group">
-              <button [class.active]="editor.h1.active" (click)="header(!editor.h1.active ? 1 : 0)">H1</button>
               <button id="_header_button" [class.active]="editor.h2.active" (click)="header(!editor.h2.active ? 2 : 0)">
                 <span class="icon icon-h2-icon-editor"></span>
               </button>
+              <button id="_bold_button" [class.active]="editor.bold.active" (click)="bold()">
+                <span class="icon icon-bold-icon-editor"></span>
+              </button>
+              <button id="_italic_button" [class.active]="editor.italic.active" (click)="italic()">
+                <span class="icon icon-italic-icon-editor"></span>
+              </button>
+              <button [class.active]="editor.ins.active" (click)="ins()">
+                <span class="icon icon-underline-icon-editor"></span>
+              </button>
+              <button [class.active]="editor.del.active" (click)="delete()">
+                <span class="icon icon-strikethrough-icon-editor"></span>
+              </button>
+              <!-- кнопка создания спойлера -->
+              <button [class.active]="">
+                <span class="icon icon-spoiler-icon-editor"></span>
+              </button>
+              <button id="_link_button" [class.active]="editor.link.active" (click)="link()">
+                <span class="icon icon-insertlink-icon-editor"></span>
+              </button>
+            </span>
+            <span class="button_group">
+              <!--<button id="_bold_button" [class.active]="editor.bold.active" (click)="bold()">-->
+                <!--<span class="icon icon-bold-icon-editor"></span>-->
+              <!--</button>-->
+              <!--<button id="_italic_button" [class.active]="editor.italic.active" (click)="italic()">-->
+                <!--<span class="icon icon-italic-icon-editor"></span>-->
+              <!--</button>-->
+              <!--<button id="_link_button" [class.active]="editor.link.active" (click)="link()">-->
+                <!--<span class="icon icon-insertlink-icon-editor"></span>-->
+              <!--</button>-->
+            </span>
+            <span class="button_group">
+              <button [class.active]="editor.h1.active" (click)="header(!editor.h1.active ? 1 : 0)">H1</button>
+              <!--<button id="_header_button" [class.active]="editor.h2.active" (click)="header(!editor.h2.active ? 2 : 0)">-->
+                <!--<span class="icon icon-h2-icon-editor"></span>-->
+              <!--</button>-->
               <button id="_subheader_button" [class.active]="editor.h3.active" (click)="header(!editor.h3.active ? 3 : 0)"></button>
               <button id="_quote_button" [class.active]="editor.blockquote.active" (click)="bloquote()"></button>
               <button [class.active]="editor.cite.active" (click)="cite()">CIT</button>
               <button (click)="spoiler()">sp</button>
-              <button [class.active]="editor.del.active" (click)="delete()">DEL</button>
-              <button [class.active]="editor.ins.active" (click)="ins()">INS</button>
+              <!--<button [class.active]="editor.del.active" (click)="delete()">-->
+                <!--<span class="icon icon-strikethrough-icon-editor"></span>-->
+              <!--</button>-->
+              <!--<button [class.active]="editor.ins.active" (click)="ins()">-->
+                <!--<span class="icon icon-underline-icon-editor"></span>-->
+              <!--</button>-->
               <!--<button [class.active]="editor.dd.active" (click)="formatDd()">DD</button>-->
               <!--<button [class.active]="editor.dt.active" (click)="formatDt()">DT</button>-->
               <button [class.active]="editor.orderedList.active" (click)="orderedList()">ol</button>
