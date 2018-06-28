@@ -3,29 +3,28 @@ import {Injector, NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
-import {SelectionService} from './selection';
 import {CommonModule} from '@angular/common';
-import {CommandService} from './command';
-import {SelectionLogicService} from './selection/selection-logic.service';
 import { TestComponent } from './test/test.component';
 import {createCustomElement} from '@angular/elements';
 import {GGSpoilerComponent} from './gg-spoiler';
+import {GGNgxEditorModule} from './editor/gg-ngx-editor.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
-    GGSpoilerComponent
+    GGSpoilerComponent,
   ],
   imports: [
     BrowserModule,
     CommonModule,
     FormsModule,
+    GGNgxEditorModule
   ],
   entryComponents: [
     GGSpoilerComponent
   ],
-  providers: [SelectionService, CommandService, SelectionLogicService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

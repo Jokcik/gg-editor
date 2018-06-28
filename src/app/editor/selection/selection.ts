@@ -1,9 +1,7 @@
-import {Blockquote, Bold, Cite, Del, H1, H2, H3, Ins, Link, OrderedList, UnorderedList} from './blocks';
+import {Blockquote, Bold, Cite, Del, H1, H2, H3, Ins, Link, OrderedList, Underline, UnorderedList} from './blocks';
 
 export class SelectionEditor {
   active: boolean = false;
-  // activeLink: boolean = false;
-  // activeBold: boolean = false;
   bold: Bold = new Bold();
   italic: Bold = new Bold();
 
@@ -14,9 +12,8 @@ export class SelectionEditor {
   cite: Cite = new Cite();
   del: Del = new Del();
   ins: Ins = new Ins();
+  under: Underline = new Underline();
   link: Link = new Link();
-  // dd: Dd = new Dd();
-  // dt: Dt = new Dt();
   orderedList: OrderedList = new OrderedList();
   unorderedList: UnorderedList = new UnorderedList();
 }

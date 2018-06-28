@@ -892,6 +892,7 @@ textarea {
 }
 
 .ql-container .tl_blocks, .ql-container .tl_link_tooltip, .ql-container .tl_tooltip {
+  z-index: 1;
   display: block
 }
 

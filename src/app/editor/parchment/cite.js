@@ -5,15 +5,9 @@ import Container from 'quill/blots/container';
 // import Inline from 'quill/blots/inline';
 import Link from 'quill/formats/link';
 
-class CiteItem extends Block {
+console.log(Container);
 
-}
-CiteItem.blotName = 'cite-item';
-CiteItem.tagName = 'A';
-CiteItem.className = 'citeItem';
-
-
-class Cite extends Container {
+export class Cite extends Container.default {
   static create(value) {
     const node = super.create();
     node.setAttribute('contenteditable', false);
@@ -35,6 +29,7 @@ class Cite extends Container {
   }
 
   constructor(domNode) {
+    // @ts-ignore
     super(domNode);
     const listEventHandler = (e) => {
       console.log(5555);
@@ -65,7 +60,6 @@ class Cite extends Container {
       if (!after || !after.parent) { return; }
       after.parent.insertBefore(blot, after);
     }
-    console.log(this.next, this.prev);
   }
 
   deleteAt(a, l) {
@@ -183,12 +177,12 @@ class Cite extends Container {
   // insertBefore(blot, ref) {
     // super.insertBefore(blot, ref)
   // }
+
+
+
 }
-Cite.blotName = 'cite';
 Cite.scope = Parchment.Scope.BLOCK_BLOT;
+Cite.blotName = 'cite';
 Cite.tagName = 'cite';
 Cite.defaultChild = 'link';
 Cite.allowedChildren = [Link];
-
-
-export { Cite as default, CiteItem }

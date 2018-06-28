@@ -7,6 +7,4 @@ import {Component, Input} from '@angular/core';
 export class GGSpoilerComponent {
   @Input() title: string;
   @Input() active: boolean = false;
-  @Input() content: string = '';
-  @Input() show: boolean = false;
 }

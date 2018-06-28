@@ -2,6 +2,7 @@
   <div class="spoiler-head" tabindex="0" data-show="показать" data-hide="скрыть" (click)="active = !active">
     {{ title }}
   </div>
-  <div class="spoiler-content" tabindex="1" *ngIf="show" [innerHTML]="content">
+  <div class="spoiler-content" tabindex="1">
+    <ng-content></ng-content>
   </div>
 </div>

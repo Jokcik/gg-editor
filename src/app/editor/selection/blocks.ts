@@ -14,12 +14,6 @@ export class Cite extends Tag {
 }
 
 
-export class Dd extends Tag {
-}
-
-export class Dt extends Tag {
-}
-
 export class OrderedList extends Tag {
   static TagName = 'list';
   static formatType = 'ordered';
@@ -43,6 +37,13 @@ export class Blockquote extends Tag {
   }
 }
 
+export class Underline extends Tag {
+  static TagName = 'underline';
+  static createByFormat(format: any) {
+    return new this(!!format[this.TagName]);
+  }
+}
+
 export class H1 extends Tag {
   static TagName = 'header';
   static formatType = 1;
@@ -53,7 +54,7 @@ export class H1 extends Tag {
 
 export class H2 extends Tag {
   static TagName = 'header';
-  static formatType = 3;
+  static formatType = 2;
   static createByFormat(format: any) {
     return new this(format[this.TagName] === this.formatType);
   }
