@@ -1,23 +1,41 @@
-import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {OrderedList, SelectionEditor, UnorderedList} from './selection';
+import {Store} from '@ngrx/store';
+import {AfterViewInit, ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, OnInit} from '@angular/core';
 import {QuillService} from './quill-service/quill.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {TypeQuill} from './quill-service/register/quill-register';
+import {Observable, of} from 'rxjs';
+import {SelectionEditor} from './models';
+import {EditorState} from './store/reducers/editor';
+import {getSelection} from './store/reducers';
 
 @Component({
   selector: 'gg-editor',
   templateUrl: './gg-ngx-editor.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GGNgxEditorComponent implements OnInit, AfterViewInit {
   @Input() value: string;
   @Input() type: TypeQuill;
 
-  public safeHtml;
   public toggleSmiles: boolean;
   public toggleImageUpload: boolean;
 
+  public editor$: Observable<SelectionEditor> = of(new SelectionEditor());
+  public editor: SelectionEditor = new SelectionEditor();
+
   constructor(private quillService: QuillService,
+              private store: Store<EditorState>,
+              private zone: NgZone,
+              private cd: ChangeDetectorRef,
+              private appRef: ApplicationRef,
               private sanitaizer: DomSanitizer) {
+    this.editor$.subscribe(a => {
+    //   this.editor = new SelectionEditor();
+    //   console.log(this.editor);
+      this.editor = { ...a };
+      console.trace(a);
+      this.appRef.tick()
+    });
   }
 
   public getContent(): string {
@@ -45,7 +63,9 @@ export class GGNgxEditorComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit() {
-    this.safeHtml = this.sanitaizer.bypassSecurityTrustHtml(this.value);
+    this.zone.run(() => {
+      this.editor$ = this.store.select(getSelection);
+    });
   }
 
   public ngAfterViewInit() {

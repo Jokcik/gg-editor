@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, Renderer2} from '@angular/core';
-import {OrderedList, SelectionEditor, UnorderedList} from '../selection';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit} from '@angular/core';
+import {OrderedList, SelectionEditor, UnorderedList} from '../models';
 import {QuillService} from '../quill-service/quill.service';
 
 @Component({
@@ -7,21 +7,19 @@ import {QuillService} from '../quill-service/quill.service';
   templateUrl: './tooltip.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TooltipComponent implements OnInit {
-  @Input() editor: SelectionEditor = new SelectionEditor();
-  @Input() left: number;
-  @Input() right: number;
+export class TooltipComponent implements OnInit, OnChanges {
+  @Input() editor: SelectionEditor;
 
   constructor(private quillService: QuillService,
-              private elementRef: ElementRef,
-              private cd: ChangeDetectorRef) {
+              private cd: ChangeDetectorRef,) {
+  }
+
+  ngOnChanges() {
+    console.log('ngOnChanges', this.editor.active);
+    setTimeout(() => this.cd.detectChanges(), 100)
   }
 
   ngOnInit() {
-    this.quillService.selected$.subscribe(editor => {
-      this.editor = editor;
-      this.cd.detectChanges();
-    });
   }
 
   public bold() {

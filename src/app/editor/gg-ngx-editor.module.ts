@@ -6,11 +6,14 @@ import {QuillService} from './quill-service/quill.service';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import {QuillKeyboardService} from './quill-service/register/quill-keyboard.service';
 import {QuillTooltipService} from './quill-service/register/quill-tooltip.service';
+import {StoreModule} from '@ngrx/store';
+import {editorReducers} from './store/reducers';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    StoreModule.forRoot(editorReducers)
   ],
   declarations: [
     GGNgxEditorComponent,

@@ -19,11 +19,14 @@ import {
   SelectionEditor,
   Underline,
   UnorderedList
-} from '../selection';
+} from '../models';
 import Quill from 'quill/core';
 import {registerQuill, TypeQuill} from './register/quill-register';
 import {QuillKeyboardService} from './register/quill-keyboard.service';
 import {QuillTooltipService} from './register/quill-tooltip.service';
+import {Store} from '@ngrx/store';
+import {EditorState} from '../store/reducers/editor';
+import {Selection} from '../store/actions/editor';
 
 
 @Injectable()
@@ -31,13 +34,8 @@ export class QuillService {
   public _quill: Quill;
   // private _renderer: Renderer2;
 
-  private _subjectSelected: Subject<SelectionEditor> = new Subject<SelectionEditor>();
-  public selected$: Observable<SelectionEditor> = this._subjectSelected.asObservable();
-
-  private _subjectPosition: Subject<SelectionEditor> = new Subject<SelectionEditor>();
-  public position$: Observable<SelectionEditor> = this._subjectPosition.asObservable();
-
   constructor(private keyboardService: QuillKeyboardService,
+              private store: Store<EditorState>,
               private tooltipService: QuillTooltipService) {
   }
 
@@ -107,7 +105,7 @@ export class QuillService {
       orderedList: OrderedList.createByFormat(format),
     };
 
-    this._subjectSelected.next(result);
+    this.store.dispatch(new Selection(result));
   }
 
   public setBold(active: boolean) {

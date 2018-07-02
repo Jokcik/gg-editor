@@ -3,7 +3,7 @@
     <div class="avatar-block"></div>
     <div class="comment-block">
       <div class="textarea-block">
-        <gg-editor-tooltip class="ql-container"></gg-editor-tooltip>
+        <gg-editor-tooltip [editor]="editor$ | async" class="ql-container"></gg-editor-tooltip>
         <div class="textarea"></div>
         <div class="smile-panel" *ngIf="toggleSmiles"></div>
         <div class="controls-block">
