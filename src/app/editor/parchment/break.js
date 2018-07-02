@@ -1,17 +1,42 @@
 import Quill from 'quill/core'
+import Parchment from 'parchment';
 const Break = Quill.import('blots/break');
 const Embed = Quill.import('blots/embed');
 
-Break.prototype.insertInto = function(parent, ref) {
-  Embed.prototype.insertInto.call(this, parent, ref)
-};
+class BleakLine extends Parchment.Embed {
+  static value() {
+    return undefined;
+  }
 
-Break.prototype.length= function() {
-  return 1;
-};
+  insertInto(parent, ref) {
+    Embed.prototype.insertInto.call(this, parent, ref);
+  }
 
-Break.prototype.value= function() {
-  return '\n';
-};
+  optimize(context) {
+    super.optimize(context);
+    if (this.prev && this.prev.domNode.tagName === 'BR') {
+      this.prev.remove();
+      // console.log('this.prev', this.prev.domNode.tagName);
+    }
+    // if () {
 
-export default Break;
+    // }
+    if (!this.next && this.prev) {
+      const textNode = document.createElement('br');
+      this.parent.insertBefore(Parchment.create(textNode), this)
+    }
+  }
+
+  length() {
+    return 1;
+  }
+
+  value() {
+    return '\n';
+  }
+}
+BleakLine.blotName = 'breakLine';
+BleakLine.tagName = 'BR';
+
+
+export default BleakLine;

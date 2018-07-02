@@ -10,6 +10,7 @@ import Spoiler from '../../parchment/spoiler';
 import CommentHeader from '../../parchment/header';
 import Br from '../../parchment/break';
 import Blockquote from '../../parchment/blockquote';
+import BreakLine from '../../parchment/break';
 import Clip from '../../parchment/clip';
 
 
@@ -28,7 +29,7 @@ export function registerQuill(Quill: any, type: TypeQuill) {
 }
 
 function registerComments(Quill: any) {
-  Quill.register('modules/clipboard', Clip)
+  Quill.register('modules/clipboard', Clip);
   Quill.register({
     'formats/bold': Bold,
     'formats/italic': Italic,
@@ -44,6 +45,8 @@ function registerComments(Quill: any) {
     'formats/list': List,
     'formats/video': Video,
     'formats/list/item': ListItem,
+
+    'blots/breakLine': BreakLine
   })
 }
 

@@ -42,7 +42,7 @@ export class QuillKeyboardService {
 
   private lineBreakMatcher() {
     const newDelta = new Delta();
-    newDelta.insert({'break': ''});
+    newDelta.insert({'breakLine': ''});
     return newDelta;
   }
 
@@ -62,11 +62,11 @@ export class QuillKeyboardService {
       }
 
       const nextChar = service._quill.getText(range.index + 1, 1);
-      service._quill.insertEmbed(range.index, 'break', true, 'user');
+      service._quill.insertEmbed(range.index, 'breakLine', true, 'user');
 
       if (nextChar.length == 0) {
         // second line break inserts only at the end of parent element
-        service._quill.insertEmbed(range.index, 'break', true, 'user');
+        service._quill.insertEmbed(range.index, 'breakLine', true, 'user');
       }
       service._quill.setSelection(range.index + 1, Quill.sources.SILENT);
   }
