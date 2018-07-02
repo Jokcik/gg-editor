@@ -16,11 +16,8 @@ class BleakLine extends Parchment.Embed {
     super.optimize(context);
     if (this.prev && this.prev.domNode.tagName === 'BR') {
       this.prev.remove();
-      // console.log('this.prev', this.prev.domNode.tagName);
     }
-    // if () {
 
-    // }
     if (!this.next && this.prev) {
       const textNode = document.createElement('br');
       this.parent.insertBefore(Parchment.create(textNode), this)
