@@ -4,13 +4,14 @@
     <div class="comment-block">
       <div class="textarea-block">
         <gg-editor-tooltip class="ql-container"></gg-editor-tooltip>
-        <div class="textarea"tl_tooltip></div>
+        <div class="textarea"></div>
         <div class="smile-panel" *ngIf="toggleSmiles"></div>
         <div class="controls-block">
           <div class="icon icon-smile-icon-editor" [class.active]="toggleSmiles " (click)="toggleSmiles = !toggleSmiles">
             <div class="tip">Вставить смайлик</div>
           </div>
-          <div class="icon icon-image-icon-editor" [class.active]="toggleImageUpload" (click)="toggleImageUpload = !toggleImageUpload">
+          <!--<div class="icon icon-image-icon-editor" [class.active]="toggleImageUpload" (click)="toggleImageUpload = !toggleImageUpload">-->
+          <div class="icon icon-image-icon-editor" [class.active]="toggleImageUpload" (click)="img()">
             <div class="tip">Вставить изображение</div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import {AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {TypeQuill} from './editor/quill-service/quill-register';
+import {TypeQuill} from './editor/quill-service/register/quill-register';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
     <p>fadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkadfadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkad</p>
     <p>fadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkad
     </p>
-  `
+  `;
   public type: TypeQuill = TypeQuill.COMMENT;
 
   constructor() {

@@ -2,7 +2,7 @@ import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, In
 import {OrderedList, SelectionEditor, UnorderedList} from './selection';
 import {QuillService} from './quill-service/quill.service';
 import {DomSanitizer} from '@angular/platform-browser';
-import {TypeQuill} from './quill-service/quill-register';
+import {TypeQuill} from './quill-service/register/quill-register';
 
 @Component({
   selector: 'gg-editor',
@@ -27,6 +27,11 @@ export class GGNgxEditorComponent implements OnInit, AfterViewInit {
     spoilers.forEach(spoiler => this.replaceSpoiler(spoiler));
 
     return root.innerHTML;
+  }
+
+  public img() {
+    const src = 'https://pp.userapi.com/c5661/u89683801/152004832/x_bc58fc33.jpg';
+    this.quillService.appendImg(src);
   }
 
   private replaceSpoiler(spoiler: any) {

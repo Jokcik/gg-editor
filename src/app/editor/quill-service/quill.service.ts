@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Elements} from '../constants';
 import {Observable, Subject} from 'rxjs';
-import { Range } from 'quill/core/selection';
+import {Range} from 'quill/core/selection';
 import {
   Blockquote,
   Bold,
@@ -16,11 +16,14 @@ import {
   Italic,
   Link,
   OrderedList,
-  SelectionEditor, Underline,
+  SelectionEditor,
+  Underline,
   UnorderedList
 } from '../selection';
 import Quill from 'quill/core';
-import {registerQuill, TypeQuill} from './quill-register';
+import {registerQuill, TypeQuill} from './register/quill-register';
+import {QuillKeyboardService} from './register/quill-keyboard.service';
+import {QuillTooltipService} from './register/quill-tooltip.service';
 
 
 @Injectable()
@@ -34,15 +37,16 @@ export class QuillService {
   private _subjectPosition: Subject<SelectionEditor> = new Subject<SelectionEditor>();
   public position$: Observable<SelectionEditor> = this._subjectPosition.asObservable();
 
-  constructor() {
+  constructor(private keyboardService: QuillKeyboardService,
+              private tooltipService: QuillTooltipService) {
   }
 
   get rootElem(): Element {
     return document.querySelector('.' + Elements.ROOT_ELEMENT);
   }
 
-  get tooltipElement(): HTMLElement {
-    return document.querySelector('.' + Elements.TOOLTIP_ELEMENT);
+  get clipboardElem(): Element {
+    return document.querySelector('.' + Elements.CLIPBOARD_ELEMENT);
   }
 
   public setContent(delta) {
@@ -60,42 +64,29 @@ export class QuillService {
   public init(type: TypeQuill) {
     registerQuill(Quill, type);
     const elem = this.rootElem;
-    this._quill = new Quill(elem);
 
-    elem.addEventListener('scroll', () => {
-      console.log('1234');
-      this.tooltipElement.style.marginTop = (-1 * elem.scrollTop) + 'px';
+    this._quill = new Quill(elem, {
+      modules: {
+        clipboard: {
+          matchers: this.keyboardService.getMatchers()
+        },
+        keyboard: {
+          bindings: this.keyboardService.getBinging(this)
+        }
+      }
     });
 
-    this._quill.on('editor-change', () => this.onSelect());
-    this._quill.on('editor-change', (type, range, oldRange, source) => this.onPosition(type, range, oldRange, source));
-  }
+    elem.addEventListener('scroll', () => this.tooltipService.onScroll(elem));
 
-  private onPosition(type, range, oldRange, source) {
-    if (type !== 'selection-change') return;
-    if (range != null && range.length > 0 && source === 'user') {
-      // Lock our width so we will expand beyond our offsetParent boundaries
-      this.tooltipElement.style.left = '0px';
-      this.tooltipElement.style.width = '';
-      this.tooltipElement.style.width = this.tooltipElement.offsetWidth + 'px';
-      let lines = this._quill.getLines(range.index, range.length);
-      if (lines.length === 1) {
-        this.position(this._quill.getBounds(range), document.body);
-      } else {
-        let lastLine = lines[lines.length - 1];
-        let index = this._quill.getIndex(lastLine);
-        let length = Math.min(lastLine.length() - 1, range.index + range.length - index);
-        let bounds = this._quill.getBounds(new Range(index, length));
-        this.position(bounds, document.body);
-      }
-    }
+    this._quill.on('editor-change', () => this.onSelect());
+    this._quill.on('editor-change', (type, range, oldRange, source) => this.tooltipService.changePosition(this, type, range, oldRange, source));
   }
 
   private onSelect() {
     const select = this._quill.getSelection();
+    console.log(select);
     if (!select) { return; }
     const format = this._quill.getFormat(select);
-    console.log(format);
 
     const result: SelectionEditor = {
       active: select.length > 0,
@@ -166,14 +157,17 @@ export class QuillService {
   }
 
   public appendSpoiler() {
-    const range = this._quill.getSelection(true);
-    this._quill.insertText(range.index, '\n', Quill.sources.USER);
-    this._quill.insertEmbed(range.index + 1, 'spoiler', {
+    const range: Range = this._quill.getSelection(true);
+    const contents = this._quill.getText(range);
+    const format = this._quill.getFormat(range);
+    this._quill.deleteText(range);
+    // this._quill.insertText(range.index, '\n', Quill.sources.USER);
+    this._quill.insertEmbed(range.index, 'spoiler', {
       title: 'Вставьте заголовок спойлера',
-      text: '<p>Текст под спойлером</p>',
+      text: `<p>${contents}</p>`,
       active: true
     }, Quill.sources.USER);
-    this._quill.setSelection(range.index + 2, Quill.sources.SILENT);
+    this._quill.setSelection(range.index + 1, Quill.sources.SILENT);
   }
 
   public appendImg(src: string) {
@@ -185,31 +179,5 @@ export class QuillService {
 
   public setLink(url: string) {
     this._quill.format(Link.TagName, url || undefined);
-  }
-
-  position(reference, boundsContainer) {
-    let left = reference.left + reference.width/2 - this.tooltipElement.offsetWidth/2;
-    // root.scrollTop should be 0 if scrollContainer !== root
-    let top = reference.top + this._quill.root.scrollTop - 15;
-    this.tooltipElement.style.left = left + 'px';
-    this.tooltipElement.style.top = top + 'px';
-    let containerBounds = boundsContainer.getBoundingClientRect();
-    let rootBounds = this.tooltipElement.getBoundingClientRect();
-    let shift = 0;
-    if (rootBounds.right > containerBounds.right) {
-      shift = containerBounds.right - rootBounds.right;
-      this.tooltipElement.style.left = (left + shift) + 'px';
-    }
-    if (rootBounds.left < containerBounds.left) {
-      shift = containerBounds.left - rootBounds.left;
-      this.tooltipElement.style.left = (left + shift) + 'px';
-    }
-    if (rootBounds.top > containerBounds.top) {
-      let height = rootBounds.top - rootBounds.bottom;
-      let verticalShift = reference.top - reference.bottom + height;
-      this.tooltipElement.style.top = (top - verticalShift) + 'px';
-      this.tooltipElement.classList.add('ql-flip');
-    }
-    return shift;
   }
 }

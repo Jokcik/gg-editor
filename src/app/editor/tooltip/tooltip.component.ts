@@ -77,11 +77,6 @@ export class TooltipComponent implements OnInit {
     this.quillService.setHeader(level);
   }
 
-  public img() {
-    const src = 'https://pp.userapi.com/c5661/u89683801/152004832/x_bc58fc33.jpg';
-    this.quillService.appendImg(src);
-  }
-
   public cite() {
     const src = 'https://goodgame.ru/';
     this.quillService.appendCite(src);

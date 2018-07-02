@@ -1,3 +1,11 @@
+.ql-clipboard {
+  left: -100000px;
+  height: 1px;
+  overflow-y: hidden;
+  position: absolute;
+  top: 50%;
+}
+
 @font-face {
   font-family: CustomSansSerif;
   font-style: normal;
