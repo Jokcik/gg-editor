@@ -5,6 +5,6 @@ import {Component, Input} from '@angular/core';
   templateUrl: './gg-spoiler.component.html'
 })
 export class GGSpoilerComponent {
-  @Input() title: string;
+  @Input() title: string = '123';
   @Input() active: boolean = false;
 }

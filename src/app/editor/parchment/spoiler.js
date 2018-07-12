@@ -1,57 +1,17 @@
-import Parchment from 'parchment';
+import Spoiler from './spoiler/spoiler';
+import SpoilerBlock from './spoiler/spoiler-block';
+import SpoilerContent from './spoiler/spoiler-content';
+import SpoilerHeader from './spoiler/spoiler-head';
 
-class Spoiler extends Parchment.Embed {
-  static create(value) {
-    let node = super.create(value);
+import Block from "quill/blots/block";
+import TextBlot from "quill/blots/text";
 
-    node.innerHTML = value.text;
-    node.setAttribute('title', value.title);
-    node.setAttribute('active', true);
-    node.setAttribute('contenteditable', false);
-    return node;
-  }
+// SpoilerBlock.requiredContainer = Spoiler;
+// SpoilerContent.requiredContainer = SpoilerBlock;
+// SpoilerHeader.requiredContainer = SpoilerBlock;
 
-  constructor(domNode) {
-    super(domNode);
+Spoiler.allowedChildren = [SpoilerBlock, TextBlot, Block];
+SpoilerContent.allowedChildren = [Block, TextBlot, Spoiler];
+SpoilerBlock.allowedChildren = [SpoilerContent, SpoilerHeader];
 
-    setTimeout(() => {
-      this.spoilerElement(domNode, '.spoiler-content');
-      this.spoilerElement(domNode, '.spoiler-head', false);
-    });
-  }
-
-  spoilerElement(domNode, selector, allowEnter = true) {
-    const content = domNode.querySelector(selector);
-    content.setAttribute('contenteditable', true);
-    content.addEventListener('keydown', (e) => this.spoilerEvent(e, content, allowEnter));
-  }
-
-  spoilerEvent(event, content, allowEnter = true) {
-    switch (event.keyCode ) {
-      case 13:
-        if (!allowEnter) {
-          event.preventDefault();
-        }
-        break;
-      case 8:
-        if (!content.textContent.trim()) {
-          event.preventDefault();
-          content.innerHTML = allowEnter ? '<p><br/></p>' : '';
-        }
-        break;
-    }
-  }
-
-  static value(domNode) {
-    return {
-      text: domNode.querySelector('.spoiler-content').innerHTML,
-      title: domNode.getAttribute('title')
-    };
-  }
-}
-
-Spoiler.blotName = 'spoiler';
-Spoiler.tagName = 'GG-SPOILER';
-
-
-export default Spoiler;
+export { Spoiler as default, SpoilerBlock, SpoilerContent, SpoilerHeader };

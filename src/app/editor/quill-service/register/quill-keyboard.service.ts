@@ -12,7 +12,8 @@ export class QuillKeyboardService {
 
   public getMatchers() {
     return [
-      ['BR', this.lineBreakMatcher]
+      ['GG-SPOILER-EDITOR', this.spoilerMatcher],
+      ['BR', this.lineBreakMatcher],
     ]
   }
 
@@ -43,6 +44,14 @@ export class QuillKeyboardService {
   private lineBreakMatcher() {
     const newDelta = new Delta();
     newDelta.insert({'breakLine': ''});
+    return newDelta;
+  }
+
+  private spoilerMatcher(a) {
+    if (!a) { return new Delta(); }
+    const newDelta = new Delta();
+    console.log(a);
+    newDelta.insert({'spoiler': {text: a.innerHTML, title: a.getAttribute('title')}});
     return newDelta;
   }
 

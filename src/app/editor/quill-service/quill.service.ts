@@ -67,6 +67,7 @@ export class QuillService {
 
     this._quill = new Quill(elem, {
       modules: {
+        // table: true,
         clipboard: {
           matchers: this.keyboardService.getMatchers()
         },
@@ -161,7 +162,7 @@ export class QuillService {
     const contents = this._quill.getText(range);
     const format = this._quill.getFormat(range);
     this._quill.deleteText(range);
-    // this._quill.insertText(range.index, '\n', Quill.sources.USER);
+    this._quill.format(range.index, '\n', Quill.sources.USER);
     this._quill.insertEmbed(range.index, 'spoiler', {
       title: 'Вставьте заголовок спойлера',
       text: `<p>${contents}</p>`,
@@ -173,6 +174,7 @@ export class QuillService {
   public appendImg(src: string) {
     const range = this._quill.getSelection(true);
     this._quill.insertText(range.index, '\n', Quill.sources.USER);
+    // this._quill.insertEmbed(range.index + 1, Img.TagName, src, Quill.sources.USER);
     this._quill.insertEmbed(range.index + 1, Img.TagName, src, Quill.sources.USER);
     this._quill.setSelection(range.index + 2, Quill.sources.SILENT);
   }

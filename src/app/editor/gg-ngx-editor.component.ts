@@ -51,6 +51,8 @@ export class GGNgxEditorComponent implements OnInit, AfterViewInit {
   public ngAfterViewInit() {
     this.quillService.init(this.type);
     const delta = this.quillService.convertHTML(this.value);
+    console.log(delta);
+    // this.quillService.setContent(delta);
     this.quillService.setContent(delta);
   }
 }

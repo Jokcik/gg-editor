@@ -6,13 +6,14 @@ import Video from 'quill/formats/video';
 import List, {ListItem} from 'quill/formats/list';
 import Underline from 'quill/formats/underline';
 import Delete from '../../parchment/del';
-import Spoiler from '../../parchment/spoiler';
+import Spoiler, {SpoilerBlock, SpoilerContent, SpoilerHeader} from '../../parchment/spoiler';
 import CommentHeader from '../../parchment/header';
 import Br from '../../parchment/break';
 import Blockquote from '../../parchment/blockquote';
 import BreakLine from '../../parchment/break';
 import Clip from '../../parchment/clip';
 
+import QuillTable from 'quill-table';
 
 export enum TypeQuill {
   COMMENT
@@ -37,17 +38,25 @@ function registerComments(Quill: any) {
     'formats/delete': Delete,
     'formats/image': Image,
     'formats/spoiler': Spoiler,
+    'formats/spoiler-block': SpoilerBlock,
+    'formats/spoiler-content': SpoilerContent,
+    'formats/spoiler-header': SpoilerHeader,
     'formats/header': CommentHeader,
     'formats/underline': Underline,
     'formats/break': Br,
     'formats/blockquote': Blockquote,
 
-    'formats/list': List,
+    // 'formats/list': List,
     'formats/video': Video,
-    'formats/list/item': ListItem,
+    // 'formats/list/item': ListItem,
 
     'blots/breakLine': BreakLine
-  })
+  });
+  Quill.register(QuillTable.TableCell);
+  Quill.register(QuillTable.TableRow);
+  Quill.register(QuillTable.Table);
+  Quill.register(QuillTable.Contain);
+  Quill.register('modules/table', QuillTable.TableModule);
 }
 
 //Quill.register({
