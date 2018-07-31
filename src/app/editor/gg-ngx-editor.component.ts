@@ -3,6 +3,7 @@ import {OrderedList, SelectionEditor, UnorderedList} from './selection';
 import {QuillService} from './quill-service/quill.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {TypeQuill} from './quill-service/register/quill-register';
+import Delta from 'quill-delta'
 
 @Component({
   selector: 'gg-editor',
@@ -52,7 +53,17 @@ export class GGNgxEditorComponent implements OnInit, AfterViewInit {
     this.quillService.init(this.type);
     const delta = this.quillService.convertHTML(this.value);
     console.log(delta);
+    // const delta = new Delta({
+    //   "ops": [
+    //     {
+    //       "insert": {spoiler: {text: `<p>Абра кадабра</p><!--<div class="spoiler-block">…"spoiler-content">11111111></div>--><!--</div>-->`, title: "title"}},
+    //     },
+    //     // {insert: "аываываfadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkd…hjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkad"}
+    //   ]
+    // });
     // this.quillService.setContent(delta);
+    console.log('NG FATER VIEW INIT', delta);
     this.quillService.setContent(delta);
+    setTimeout(() => console.log(this.quillService._quill.getContents()), 2000);
   }
 }

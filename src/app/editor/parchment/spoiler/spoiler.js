@@ -3,31 +3,44 @@ import Container from 'quill/blots/container';
 import Block from 'quill/blots/block';
 import Parchment from 'parchment';
 import SpoilerHeader from "./spoiler-head";
-
-console.log(Container);
+import SpoilerContent from "./spoiler-content";
 
 class Spoiler extends Container {
   static create(value) {
-    console.log(value);
+    // console.log(value);
     let node = super.create();
-    // let node = document.createElement('gg-spoiler-editor');
-    // const block = Parchment.create('spoiler-block', value_);
-    // const block = document.createElement('div');
-    // block.classList.add('spoiler-block');
-    // block.classList.add('active');
+
     const a = Parchment.create('spoiler-block', value);
 
-    console.log(a.domNode);
     node.appendChild(a.domNode);
 
     return node;
   }
 
+  // insertBefore(blot, ref) {
+  //   console.warn(blot, ref);
+  //   if (!(blot instanceof SpoilerBlock)) {
+  //     super.insertBefore(blot, ref);
+  //   } else {
+  //     // console.log('insertBefore(blot, ref)', blot, ref);
+  //     let index = ref == null ? this.length() : ref.offset(this);
+  //     let after = this.split(index);
+  //     if (!after || !after.parent) { return; }
+  //     after.parent.insertBefore(blot, after);
+  //   }
+  // }
 
+  // insertAt() {
+  //   console.warn('insertAt()', ...arguments);
+  // }
+
+  // optimize() {
+  //
+  // }
 }
+
 Spoiler.blotName = 'spoiler';
 Spoiler.scope = Parchment.Scope.BLOCK_BLOT;
-Spoiler.defaultChild = 'div';
 Spoiler.tagName = 'gg-spoiler-editor';
 
 export default Spoiler;

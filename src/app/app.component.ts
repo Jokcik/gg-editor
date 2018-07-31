@@ -8,15 +8,21 @@ import {TypeQuill} from './editor/quill-service/register/quill-register';
 })
 export class AppComponent implements OnInit {
   public value = `
-    <gg-spoiler-editor title="123dasd" active="true">
-      <div class="spoiler-block"></div>
+    <gg-spoiler-editor title="title" active="true">
+      <!--<div class="spoiler-block">-->
+        <!--<div class="spoiler-head">asdfasd></div>-->
+        <!--<div class="spoiler-content">11111111></div>-->
+      <!--</div>-->
+      <p>азазаза</p>
     </gg-spoiler-editor>
-    
-    <p>аываываfadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkad</p>
-    <p>fadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkadfadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkadfadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkad</p>
-    <p>fadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkadfadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkad</p>
-    <p>fadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkad</p>
-  `;
+    <!--<p>аываываfadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkad</p>-->
+    <!--<p>fadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkadfadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkadfadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkad</p>-->
+    <!--<p>fadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkadfadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkad</p>-->
+    <!--<p>fadfsdglasjfhkjghasjfhjkasdhfkjahsdkjfhsjkdhfkasdhfkjashdkfhakjsdfhkad</p>-->
+<!--123-->
+`
+
+  ;
   public type: TypeQuill = TypeQuill.COMMENT;
 
   constructor() {

@@ -14,6 +14,7 @@ export class QuillKeyboardService {
     return [
       ['GG-SPOILER-EDITOR', this.spoilerMatcher],
       ['BR', this.lineBreakMatcher],
+      // ['DIV', this.divMatcher],
     ]
   }
 
@@ -41,6 +42,29 @@ export class QuillKeyboardService {
     };
   }
 
+  private divMatcher(node, delta) {
+    console.warn('divMatcher', delta, node, node.innerHTML);
+    const newDelta = new Delta();
+    const list = node.classList;
+    if (list.contains('spoiler-block')) {
+      newDelta.insert({'spoiler-block': ''});
+      return newDelta;
+    }
+
+    if (list.contains('spoiler-head')) {
+      console.log('SPOILER HEAD', node);
+      newDelta.insert({'spoiler-header': {text: node.innerHTML}});
+      return newDelta;
+    }
+
+    if (list.contains('spoiler-content')) {
+      newDelta.insert({'spoiler-content': node.innerHTML});
+      return newDelta;
+    }
+
+    return delta;
+  }
+
   private lineBreakMatcher() {
     const newDelta = new Delta();
     newDelta.insert({'breakLine': ''});
@@ -51,7 +75,7 @@ export class QuillKeyboardService {
     if (!a) { return new Delta(); }
     const newDelta = new Delta();
     console.log(a);
-    newDelta.insert({'spoiler': {text: a.innerHTML, title: a.getAttribute('title')}});
+    newDelta.insert({'spoiler': { text: a.innerHTML, title: a.getAttribute('title') } });
     return newDelta;
   }
 

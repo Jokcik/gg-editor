@@ -5,13 +5,15 @@ import SpoilerHeader from './spoiler/spoiler-head';
 
 import Block from "quill/blots/block";
 import TextBlot from "quill/blots/text";
+import Inline from "quill/blots/inline";
 
-// SpoilerBlock.requiredContainer = Spoiler;
-// SpoilerContent.requiredContainer = SpoilerBlock;
-// SpoilerHeader.requiredContainer = SpoilerBlock;
+Spoiler.allowedChildren = [ SpoilerBlock ];
+Spoiler.defaultChild = 'spoiler-block';
 
-Spoiler.allowedChildren = [SpoilerBlock, TextBlot, Block];
-SpoilerContent.allowedChildren = [Block, TextBlot, Spoiler];
+SpoilerContent.allowedChildren = [Block, TextBlot, Spoiler, Inline];
+SpoilerContent.defaultChild = 'p';
+
 SpoilerBlock.allowedChildren = [SpoilerContent, SpoilerHeader];
+SpoilerBlock.defaultChild = 'spoiler-header';
 
 export { Spoiler as default, SpoilerBlock, SpoilerContent, SpoilerHeader };
